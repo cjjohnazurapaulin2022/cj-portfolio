@@ -25,12 +25,12 @@ const social: Social = [
     link: "https://github.com/cjjohnazurapaulin2022",
     essential: true,
   },
-  {
-    name: "LinkedIn",
-    icon: "linkedin",
-    link: "https://www.linkedin.com/in/cj-john-paulin/",
-    essential: true,
-  },
+ {
+  name: "LinkedIn",
+  icon: "linkedin",
+  link: "https://www.linkedin.com/in/cj-john-paulin-6b29aa2ba",
+  essential: true,
+},
   {
     name: "Email",
     icon: "email",
