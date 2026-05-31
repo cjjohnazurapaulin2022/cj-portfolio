@@ -7,7 +7,7 @@ const person: Person = {
   name: `CJ Paulin`,
   role: "Data Analyst",
   avatar: "/images/cj-avatar.jpg",
-  email: "cj.paulin@dataanalyst.com",
+  email: "cjjohnazurapaulin2022@gmail.com",
   location: "Asia/Manila",
   languages: ["English", "Filipino"],
 };
@@ -28,13 +28,13 @@ const social: Social = [
   {
     name: "LinkedIn",
     icon: "linkedin",
-    link: "https://www.linkedin.com/in/cj-paulin/",
+    link: "https://www.linkedin.com/in/cj-john-paulin/",
     essential: true,
   },
   {
     name: "Email",
     icon: "email",
-    link: `mailto:${person.email}`,
+    link: "mailto:cjjohnazurapaulin2022@gmail.com",
     essential: true,
   },
 ];
