@@ -125,6 +125,55 @@ export default function Home() {
       )}
       <Projects range={[2]} />
       <Mailchimp />
+      
+      {/* CONTACT SECTION - ADDED FOR CLIENTS TO REACH YOU */}
+      <RevealFx translateY="16" delay={0.4}>
+        <Column
+          fillWidth
+          horizontal="center"
+          paddingY="48"
+          paddingX="24"
+          gap="24"
+          style={{
+            background: "var(--neutral-alpha-weak)",
+            borderRadius: "24px",
+            marginTop: "40px",
+          }}
+        >
+          <Heading variant="display-strong-xs" style={{ textAlign: "center" }}>
+            Let's Connect
+          </Heading>
+          <Text
+            onBackground="neutral-weak"
+            style={{ textAlign: "center", maxWidth: "500px" }}
+          >
+            Have a data problem? Looking for insights? Let's talk about how I can help.
+          </Text>
+          <Row gap="16" horizontal="center" wrap>
+            <Button
+              href="mailto:cjjohnazurapaulin2022@gmail.com"
+              variant="primary"
+              size="m"
+            >
+              📧 Send me an Email
+            </Button>
+            <Button
+              href="https://www.linkedin.com/in/cj-john-paulin-6b29aa2ba"
+              variant="secondary"
+              size="m"
+            >
+              💼 Connect on LinkedIn
+            </Button>
+          </Row>
+          <Text
+            onBackground="neutral-weak"
+            variant="body-default-s"
+            style={{ textAlign: "center", marginTop: "8px" }}
+          >
+            Or email me directly: <strong>cjjohnazurapaulin2022@gmail.com</strong>
+          </Text>
+        </Column>
+      </RevealFx>
     </Column>
   );
 }
