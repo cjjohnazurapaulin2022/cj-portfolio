@@ -83,20 +83,23 @@ const about: About = {
     link: "https://cal.com",
   },
   intro: {
-    display: true,
-    title: "Introduction",
-    description: (
-      <>
-        I'm a data analyst passionate about uncovering insights that drive business decisions. 
-        With expertise in SQL, Python, and data visualization tools like Tableau and Power BI, 
-        I transform raw data into compelling stories and actionable recommendations.
-        
-        My approach combines technical rigor with business acumen. I focus on delivering measurable 
-        outcomes - whether that's reducing reporting time, identifying revenue opportunities, 
-        or optimizing marketing spend.
-      </>
-    ),
-  },
+  display: true,
+  title: "Introduction",
+  description: (
+    <>
+      I'm a data analyst passionate about uncovering insights that drive business decisions. 
+      With expertise in SQL, Python, and data visualization tools like Tableau and Power BI, 
+      I transform raw data into compelling stories and actionable recommendations.
+      
+      My approach combines technical rigor with business acumen. I focus on delivering measurable 
+      outcomes - whether that's reducing reporting time, identifying revenue opportunities, 
+      or optimizing marketing spend.
+      
+      <br /><br />
+      📧 <strong>Email me at:</strong> <a href="mailto:cjjohnazurapaulin2022@gmail.com" style={{color: "#007bff", textDecoration: "underline"}}>cjjohnazurapaulin2022@gmail.com</a>
+    </>
+  ),
+},
   work: {
     display: true,
     title: "Data Analytics Experience",
