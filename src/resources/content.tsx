@@ -61,7 +61,7 @@ const home: Home = {
   },
   subline: (
     <>
-    I'm CJ, a data analyst specializing in <Text as="span" size="xl" weight="strong">SQL, Python, and Business Intelligence</Text>. I turn complex data into actionable insights that drive business growth and data-informed decisions.
+    I'm CJ, a data analyst specializing in <Text as="span" size="xl" weight="strong">SQL,Excel, Python, and Business Intelligence</Text>. I turn complex data into actionable insights that drive business growth and data-informed decisions.
     </>
   ),
 };
