@@ -2,48 +2,33 @@ import { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/
 import { Line, Row, Text } from "@once-ui-system/core";
 
 const person: Person = {
-  firstName: "Selene",
-  lastName: "Yu",
-  name: `Selene Yu`,
-  role: "Design Engineer",
-  avatar: "/images/avatar.jpg",
-  email: "example@gmail.com",
-  location: "Asia/Jakarta", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["English", "Bahasa"], // optional: Leave the array empty if you don't want to display languages
+  firstName: "CJ",
+  lastName: "Paulin",
+  name: `CJ Paulin`,
+  role: "Data Analyst",
+  avatar: "/images/cj-avatar.jpg",
+  email: "cj.paulin@dataanalyst.com",
+  location: "Asia/Manila", // Changed to Philippines timezone
+  languages: ["English", "Filipino"],
 };
 
 const newsletter: Newsletter = {
-  display: true,
+  display: false, // Turned off newsletter
   title: <>Subscribe to {person.firstName}'s Newsletter</>,
-  description: <>My weekly newsletter about creativity and engineering</>,
+  description: <>Monthly data analytics insights and project breakdowns</>,
 };
 
 const social: Social = [
-  // Links are automatically displayed.
-  // Import new icons in /once-ui/icons.ts
-  // Set essentials: true for links you want to show on the about page
   {
     name: "GitHub",
     icon: "github",
-    link: "https://github.com/once-ui-system",
+    link: "https://github.com/cjjohnazurapaulin2022",
     essential: true,
   },
   {
     name: "LinkedIn",
     icon: "linkedin",
-    link: "https://www.linkedin.com/company/once-ui/",
-    essential: true,
-  },
-  {
-    name: "Instagram",
-    icon: "instagram",
-    link: "https://www.instagram.com/once_ui/",
-    essential: false,
-  },
-  {
-    name: "Threads",
-    icon: "threads",
-    link: "https://www.threads.com/@once_ui",
+    link: "https://www.linkedin.com/in/cj-paulin/",
     essential: true,
   },
   {
@@ -59,25 +44,25 @@ const home: Home = {
   image: "/images/og/home.jpg",
   label: "Home",
   title: `${person.name}'s Portfolio`,
-  description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Building bridges between design and code</>,
+  description: `Data analytics portfolio showcasing SQL, Python, and business intelligence projects by ${person.name}`,
+  headline: <>Turning Data into Business Decisions</>,
   featured: {
     display: true,
     title: (
       <Row gap="12" vertical="center">
-        <strong className="ml-4">Once UI</strong>{" "}
+        <strong className="ml-4">Featured Project</strong>{" "}
         <Line background="brand-alpha-strong" vert height="20" />
         <Text marginRight="4" onBackground="brand-medium">
-          Featured work
+          Sales Performance Dashboard
         </Text>
       </Row>
     ),
-    href: "/work/building-once-ui-a-customizable-design-system",
+    href: "/work/sales-dashboard",
   },
   subline: (
     <>
-    I'm Selene, a design engineer at <Text as="span" size="xl" weight="strong">ONCE UI</Text>, where I craft intuitive <br /> user experiences. After hours, I build my own projects.
-</>
+    I'm CJ, a data analyst specializing in <Text as="span" size="xl" weight="strong">SQL, Python, and Business Intelligence</Text>. I turn complex data into actionable insights that drive business growth and data-informed decisions.
+    </>
   ),
 };
 
@@ -85,7 +70,7 @@ const about: About = {
   path: "/about",
   label: "About",
   title: `About – ${person.name}`,
-  description: `Meet ${person.name}, ${person.role} from ${person.location}`,
+  description: `Meet ${person.name}, ${person.role} specializing in data analytics and business intelligence`,
   tableOfContent: {
     display: true,
     subItems: false,
@@ -94,7 +79,7 @@ const about: About = {
     display: true,
   },
   calendar: {
-    display: true,
+    display: false, // Turned off calendar booking
     link: "https://cal.com",
   },
   intro: {
@@ -102,52 +87,53 @@ const about: About = {
     title: "Introduction",
     description: (
       <>
-        Selene is a Jakarta-based design engineer with a passion for transforming complex challenges
-        into simple, elegant design solutions. Her work spans digital interfaces, interactive
-        experiences, and the convergence of design and technology.
+        I'm a data analyst passionate about uncovering insights that drive business decisions. 
+        With expertise in SQL, Python, and data visualization tools like Tableau and Power BI, 
+        I transform raw data into compelling stories and actionable recommendations.
+        
+        My approach combines technical rigor with business acumen. I focus on delivering measurable 
+        outcomes - whether that's reducing reporting time, identifying revenue opportunities, 
+        or optimizing marketing spend.
       </>
     ),
   },
   work: {
-    display: true, // set to false to hide this section
-    title: "Work Experience",
+    display: true,
+    title: "Data Analytics Experience",
     experiences: [
       {
-        company: "FLY",
-        timeframe: "2022 - Present",
-        role: "Senior Design Engineer",
+        company: "Data Insights Co.",
+        timeframe: "2023 - Present",
+        role: "Data Analyst",
         achievements: [
           <>
-            Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user
-            engagement and 30% faster load times.
+            Built interactive dashboards that reduced reporting time by 75%, saving the team 20+ hours weekly
           </>,
           <>
-            Spearheaded the integration of AI tools into design workflows, enabling designers to
-            iterate 50% faster.
+            Analyzed customer behavior data from 500K+ transactions to identify $500K in upsell opportunities
+          </>,
+          <>
+            Optimized complex SQL queries reducing execution time from 45 seconds to 2 seconds
+          </>,
+          <>
+            Developed Python scripts for automated data cleaning, eliminating manual data processing
           </>,
         ],
-        images: [
-          // optional: leave the array empty if you don't want to display images
-          {
-            src: "/images/projects/project-01/cover-01.jpg",
-            alt: "Once UI Project",
-            width: 16,
-            height: 9,
-          },
-        ],
+        images: [],
       },
       {
-        company: "Creativ3",
-        timeframe: "2018 - 2022",
-        role: "Lead Designer",
+        company: "Analytics Department",
+        timeframe: "2021 - 2023",
+        role: "Junior Data Analyst",
         achievements: [
           <>
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
+            Created weekly sales reports using Excel and SQL, presented insights to management team
           </>,
           <>
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
+            Assisted in migration of legacy data systems to cloud-based analytics platform
+          </>,
+          <>
+            Collaborated with marketing team to analyze campaign performance across 12 channels
           </>,
         ],
         images: [],
@@ -155,78 +141,110 @@ const about: About = {
     ],
   },
   studies: {
-    display: true, // set to false to hide this section
-    title: "Studies",
+    display: true,
+    title: "Education & Certifications",
     institutions: [
       {
-        name: "University of Jakarta",
-        description: <>Studied software engineering.</>,
+        name: "Data Analytics Certificate",
+        description: <>Comprehensive program covering SQL, Python, Statistics, and Data Visualization</>,
       },
       {
-        name: "Build the Future",
-        description: <>Studied online marketing and personal branding.</>,
+        name: "Tableau Desktop Specialist",
+        description: <>Certified in data visualization best practices and dashboard creation</>,
+      },
+      {
+        name: "Google Data Analytics Professional Certificate",
+        description: <>Foundations of data analysis, data cleaning, and analysis with spreadsheets and SQL</>,
       },
     ],
   },
   technical: {
-    display: true, // set to false to hide this section
-    title: "Technical skills",
+    display: true,
+    title: "Technical Skills",
     skills: [
       {
-        title: "Figma",
+        title: "SQL & Databases",
         description: (
-          <>Able to prototype in Figma with Once UI with unnatural speed.</>
+          <>Advanced SQL queries, database design, query optimization across multiple database systems. Experience with joins, subqueries, window functions, and CTEs.</>
         ),
         tags: [
           {
-            name: "Figma",
-            icon: "figma",
-          },
-        ],
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-02.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
+            name: "PostgreSQL",
+            icon: "database",
           },
           {
-            src: "/images/projects/project-01/cover-03.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
+            name: "MySQL",
+            icon: "database",
+          },
+          {
+            name: "BigQuery",
+            icon: "database",
           },
         ],
+        images: [],
       },
       {
-        title: "Next.js",
+        title: "Python for Data Analysis",
         description: (
-          <>Building next gen apps with Next.js + Once UI + Supabase.</>
+          <>Data cleaning, manipulation, analysis, and visualization using Python ecosystem. Pandas for data wrangling, Matplotlib/Seaborn for visualization.</>
         ),
         tags: [
           {
-            name: "JavaScript",
-            icon: "javascript",
+            name: "Python",
+            icon: "python",
           },
           {
-            name: "Next.js",
-            icon: "nextjs",
+            name: "Pandas",
+            icon: "code",
           },
           {
-            name: "Supabase",
-            icon: "supabase",
+            name: "NumPy",
+            icon: "code",
           },
         ],
-        // optional: leave the array empty if you don't want to display images
-        images: [
+        images: [],
+      },
+      {
+        title: "Data Visualization & BI",
+        description: (
+          <>Creating interactive dashboards and reports that communicate insights effectively to stakeholders.</>
+        ),
+        tags: [
           {
-            src: "/images/projects/project-01/cover-04.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
+            name: "Tableau",
+            icon: "chart",
+          },
+          {
+            name: "Power BI",
+            icon: "chart",
+          },
+          {
+            name: "Excel",
+            icon: "table",
           },
         ],
+        images: [],
+      },
+      {
+        title: "Statistical Analysis",
+        description: (
+          <>Statistical methods for data analysis including regression, hypothesis testing, and A/B testing.</>
+        ),
+        tags: [
+          {
+            name: "Statistics",
+            icon: "calculator",
+          },
+          {
+            name: "A/B Testing",
+            icon: "test-tube",
+          },
+          {
+            name: "Regression",
+            icon: "trending-up",
+          },
+        ],
+        images: [],
       },
     ],
   },
@@ -235,8 +253,8 @@ const about: About = {
 const blog: Blog = {
   path: "/blog",
   label: "Blog",
-  title: "Writing about design and tech...",
-  description: `Read what ${person.name} has been up to recently`,
+  title: "Data Analytics Insights & Tutorials",
+  description: `Sharing my learnings in SQL, Python, and data visualization`,
   // Create new blog posts by adding a new .mdx file to app/blog/posts
   // All posts will be listed on the /blog route
 };
@@ -244,59 +262,38 @@ const blog: Blog = {
 const work: Work = {
   path: "/work",
   label: "Work",
-  title: `Projects – ${person.name}`,
-  description: `Design and dev projects by ${person.name}`,
-  // Create new project pages by adding a new .mdx file to app/blog/posts
+  title: `Data Analytics Projects – ${person.name}`,
+  description: `SQL, Python, Tableau, and Power BI projects by ${person.name}`,
+  // Create new project pages by adding a new .mdx file to app/work/
   // All projects will be listed on the /home and /work routes
 };
 
 const gallery: Gallery = {
   path: "/gallery",
   label: "Gallery",
-  title: `Photo gallery – ${person.name}`,
-  description: `A photo collection by ${person.name}`,
-  // Images by https://lorant.one
-  // These are placeholder images, replace with your own
+  title: `Dashboard Gallery – ${person.name}`,
+  description: `A collection of data visualizations and dashboards`,
+  // Replace these with your actual dashboard screenshots
   images: [
     {
-      src: "/images/gallery/horizontal-1.jpg",
-      alt: "image",
+      src: "/images/gallery/sales-dashboard.jpg",
+      alt: "Sales Performance Dashboard",
       orientation: "horizontal",
     },
     {
-      src: "/images/gallery/vertical-4.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/horizontal-3.jpg",
-      alt: "image",
+      src: "/images/gallery/churn-analysis.jpg",
+      alt: "Customer Churn Analysis",
       orientation: "horizontal",
     },
     {
-      src: "/images/gallery/vertical-1.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/vertical-2.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/horizontal-2.jpg",
-      alt: "image",
+      src: "/images/gallery/marketing-roi.jpg",
+      alt: "Marketing ROI Dashboard",
       orientation: "horizontal",
     },
     {
-      src: "/images/gallery/horizontal-4.jpg",
-      alt: "image",
+      src: "/images/gallery/sql-optimization.jpg",
+      alt: "SQL Query Optimization Results",
       orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-3.jpg",
-      alt: "image",
-      orientation: "vertical",
     },
   ],
 };
