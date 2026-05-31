@@ -32,11 +32,11 @@ const social: Social = [
   essential: true,
 },
   {
-    name: "Email",
-    icon: "email",
-    link: "mailto:cjjohnazurapaulin2022@gmail.com",
-    essential: true,
-  },
+  name: "Email",
+  icon: "email",
+  link: "mailto:cjjohnazurapaulin2022@gmail.com",
+  essential: true,
+},
 ];
 
 const home: Home = {
