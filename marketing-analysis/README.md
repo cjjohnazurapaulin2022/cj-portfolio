@@ -1,5 +1,9 @@
 # 📊 Digital Marketing Campaign Performance Analysis
 
+Analyzed 300 campaigns across 4 channels. Found a 63x ROI channel getting the smallest budget.
+
+[View Project →](https://cj-portfolio-two.vercel.app/marketing-analysis)
+
 **Tools:** Python · Pandas · Seaborn · Jupyter Notebook
 
 ---
