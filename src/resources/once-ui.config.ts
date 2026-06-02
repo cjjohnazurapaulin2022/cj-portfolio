@@ -12,7 +12,6 @@ import {
   StyleConfig,
 } from "@/types";
 import { home } from "./index";
-import { person } from "./content";
 
 // IMPORTANT: Replace with your own domain address - it's used for SEO in meta tags and schema
 const baseURL: string = "https://cj-portfolio.vercel.app";
@@ -21,7 +20,7 @@ const routes: RoutesConfig = {
   "/": true,
   "/about": true,
   "/work": true,
-  "/blog": false,  // Turned off - no blog section
+  "/blog": false,  // Changed to false
   "/gallery": true,
 };
 
@@ -34,7 +33,7 @@ const display: DisplayConfig = {
 // Enable password protection on selected routes
 // Set password in the .env file, refer to .env.example
 const protectedRoutes: ProtectedRoutesConfig = {
-  // Removed sample protected route
+  // Removed sample route
 };
 
 // Import and set font for each variant
@@ -74,22 +73,22 @@ const fonts: FontsConfig = {
 
 // default customization applied to the HTML in the main layout.tsx
 const style: StyleConfig = {
-  theme: "system", // dark | light | system
-  neutral: "gray", // sand | gray | slate | mint | rose | dusk | custom
-  brand: "cyan", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan | custom
-  accent: "red", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan | custom
-  solid: "contrast", // color | contrast
-  solidStyle: "flat", // flat | plastic
-  border: "playful", // rounded | playful | conservative | sharp
-  surface: "translucent", // filled | translucent
-  transition: "all", // all | micro | macro
-  scaling: "100", // 90 | 95 | 100 | 105 | 110
+  theme: "system",
+  neutral: "gray",
+  brand: "cyan",
+  accent: "red",
+  solid: "contrast",
+  solidStyle: "flat",
+  border: "playful",
+  surface: "translucent",
+  transition: "all",
+  scaling: "100",
 };
 
 const dataStyle: DataStyleConfig = {
-  variant: "gradient", // flat | gradient | outline
-  mode: "categorical", // categorical | divergent | sequential
-  height: 24, // default chart height
+  variant: "gradient",
+  mode: "categorical",
+  height: 24,
   axis: {
     stroke: "var(--neutral-alpha-weak)",
   },
@@ -185,22 +184,20 @@ const mailchimp: MailchimpConfig = {
   },
 };
 
-// default schema data
 const schema: SchemaConfig = {
   logo: "",
-  type: "Person",
-  name: person.name,
+  type: "Organization",
+  name: "Once UI",
   description: home.description,
-  email: person.email,
+  email: "lorant@once-ui.com",
 };
 
-// social links
 const sameAs: SameAsConfig = {
-  linkedin: "https://www.linkedin.com/in/cj-john-paulin-6b29aa2ba",
-  // Removed threads and discord - not needed
+  threads: "https://www.threads.com/@once_ui",
+  linkedin: "https://www.linkedin.com/company/once-ui/",
+  discord: "https://discord.com/invite/5EyAQ4eNdS",
 };
 
-// social sharing configuration for blog posts
 const socialSharing: SocialSharingConfig = {
   display: true,
   platforms: {
