@@ -11,7 +11,8 @@ import {
   SocialSharingConfig,
   StyleConfig,
 } from "@/types";
-import { home, person } from "./index";
+import { home } from "./index";
+import { person } from "./content";
 
 // IMPORTANT: Replace with your own domain address - it's used for SEO in meta tags and schema
 const baseURL: string = "https://cj-portfolio.vercel.app";
