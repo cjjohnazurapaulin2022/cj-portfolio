@@ -14,13 +14,13 @@ import {
 import { home } from "./index";
 
 // IMPORTANT: Replace with your own domain address - it's used for SEO in meta tags and schema
-const baseURL: string = "https://cj-portfolio.vercel.app";
+const baseURL: string = "https://demo.magic-portfolio.com";
 
 const routes: RoutesConfig = {
   "/": true,
   "/about": true,
   "/work": true,
-  "/blog": false,  // Changed to false
+  "/blog": true,
   "/gallery": true,
 };
 
@@ -33,7 +33,7 @@ const display: DisplayConfig = {
 // Enable password protection on selected routes
 // Set password in the .env file, refer to .env.example
 const protectedRoutes: ProtectedRoutesConfig = {
-  // Removed sample route
+  "/work/automate-design-handovers-with-a-figma-to-code-pipeline": true,
 };
 
 // Import and set font for each variant
@@ -73,22 +73,22 @@ const fonts: FontsConfig = {
 
 // default customization applied to the HTML in the main layout.tsx
 const style: StyleConfig = {
-  theme: "system",
-  neutral: "gray",
-  brand: "cyan",
-  accent: "red",
-  solid: "contrast",
-  solidStyle: "flat",
-  border: "playful",
-  surface: "translucent",
-  transition: "all",
-  scaling: "100",
+  theme: "system", // dark | light | system
+  neutral: "gray", // sand | gray | slate | mint | rose | dusk | custom
+  brand: "cyan", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan | custom
+  accent: "red", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan | custom
+  solid: "contrast", // color | contrast
+  solidStyle: "flat", // flat | plastic
+  border: "playful", // rounded | playful | conservative | sharp
+  surface: "translucent", // filled | translucent
+  transition: "all", // all | micro | macro
+  scaling: "100", // 90 | 95 | 100 | 105 | 110
 };
 
 const dataStyle: DataStyleConfig = {
-  variant: "gradient",
-  mode: "categorical",
-  height: 24,
+  variant: "gradient", // flat | gradient | outline
+  mode: "categorical", // categorical | divergent | sequential
+  height: 24, // default chart height
   axis: {
     stroke: "var(--neutral-alpha-weak)",
   },
@@ -184,6 +184,7 @@ const mailchimp: MailchimpConfig = {
   },
 };
 
+// default schema data
 const schema: SchemaConfig = {
   logo: "",
   type: "Organization",
@@ -192,12 +193,14 @@ const schema: SchemaConfig = {
   email: "lorant@once-ui.com",
 };
 
+// social links
 const sameAs: SameAsConfig = {
   threads: "https://www.threads.com/@once_ui",
   linkedin: "https://www.linkedin.com/company/once-ui/",
   discord: "https://discord.com/invite/5EyAQ4eNdS",
 };
 
+// social sharing configuration for blog posts
 const socialSharing: SocialSharingConfig = {
   display: true,
   platforms: {
