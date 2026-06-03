@@ -101,11 +101,7 @@ const about: About = {
         delivering measurable outcomes — whether that's reducing reporting
         time, identifying revenue opportunities, or optimizing marketing spend.
         <br /><br />
-        I'm a fresh graduate actively building my portfolio and seeking my
-        first data analyst role. Every project here reflects real analytical
-        thinking applied to real-world datasets.
-        <br /><br />
-        📧 <strong>Get in touch:</strong>{" "}
+        📧 <strong>Email me at:</strong>{" "}
         
           href="mailto:cjjohnazurapaulin2022@gmail.com"
           style={{ color: "#007bff", textDecoration: "underline" }}
@@ -117,26 +113,26 @@ const about: About = {
   },
   work: {
     display: true,
-    title: "Experience",
+    title: "Projects & Self-Directed Work",
     experiences: [
       {
-        company: "Self-Directed Data Analytics Projects",
+        company: "Independent Data Analysis Projects",
         timeframe: "2024 – Present",
-        role: "Independent Data Analyst",
+        role: "Data Analyst (Self-Directed)",
         achievements: [
           <>
-            Completed end-to-end analysis of digital marketing campaign data
-            using Python, Pandas, and Seaborn — identifying channel-level ROI
-            and spend efficiency patterns.
+            Conducted end-to-end marketing campaign analysis using Python,
+            Pandas, and Seaborn — identifying spend inefficiencies and
+            high-ROI channels across multiple ad platforms.
           </>,
           <>
-            Built data visualizations and dashboards to communicate findings
-            to a non-technical audience, simulating a real business reporting
-            workflow.
+            Built data cleaning pipelines and exploratory analysis workflows
+            in Jupyter Notebook, developing reusable templates for future
+            projects.
           </>,
           <>
-            Actively developing skills in SQL, Power BI, and Tableau through
-            project-based learning and real-world datasets.
+            Actively expanding skills toward data science through coursework
+            in statistics, machine learning fundamentals, and advanced SQL.
           </>,
         ],
         images: [],
@@ -145,20 +141,58 @@ const about: About = {
   },
   studies: {
     display: true,
-    title: "Education & Certifications",
+    title: "Certifications",
     institutions: [
       {
-        // Replace with your actual degree and school
-        name: "Your University Name",
-        description: <>Bachelor's Degree — [Your Field of Study], [Year Graduated]</>,
-      },
-      {
-        // Replace with real cert name and link when ready
-        name: "Add Your Certification Here",
+        name: "Certification 1",
         description: (
           <>
             📄{" "}
             <a href="/images/certifications/cert1.png" target="_blank">
+              View Certificate →
+            </a>
+          </>
+        ),
+      },
+      {
+        name: "Certification 2",
+        description: (
+          <>
+            📄{" "}
+            <a href="/images/certifications/cert2.png" target="_blank">
+              View Certificate →
+            </a>
+          </>
+        ),
+      },
+      {
+        name: "Certification 3",
+        description: (
+          <>
+            📄{" "}
+            <a href="/images/certifications/cert3.png" target="_blank">
+              View Certificate →
+            </a>
+          </>
+        ),
+      },
+      {
+        name: "Certification 4",
+        description: (
+          <>
+            📄{" "}
+            <a href="/images/certifications/cert4.png" target="_blank">
+              View Certificate →
+            </a>
+          </>
+        ),
+      },
+      {
+        name: "Certification 5",
+        description: (
+          <>
+            📄{" "}
+            <a href="/images/certifications/cert5.png" target="_blank">
               View Certificate →
             </a>
           </>
@@ -174,9 +208,8 @@ const about: About = {
         title: "SQL & Databases",
         description: (
           <>
-            Writing complex queries, joins, aggregations, window functions, and
-            CTEs for data extraction and reporting across PostgreSQL, MySQL, and
-            BigQuery.
+            Advanced SQL queries, database design, and query optimization
+            across PostgreSQL, MySQL, and BigQuery.
           </>
         ),
         tags: [
@@ -190,25 +223,23 @@ const about: About = {
         title: "Python for Data Analysis",
         description: (
           <>
-            Data cleaning, exploratory data analysis, and visualization using
-            Pandas, NumPy, Matplotlib, and Seaborn inside Jupyter Notebook.
+            Pandas, NumPy, Matplotlib, and Seaborn for data cleaning,
+            exploratory analysis, and visualization.
           </>
         ),
         tags: [
           { name: "Python", icon: "python" },
           { name: "Pandas", icon: "code" },
           { name: "NumPy", icon: "code" },
-          { name: "Matplotlib", icon: "code" },
-          { name: "Seaborn", icon: "code" },
         ],
         images: [],
       },
       {
-        title: "Business Intelligence & Visualization",
+        title: "Data Visualization & BI",
         description: (
           <>
-            Building interactive dashboards and visual stories for business
-            stakeholders using Tableau and Power BI.
+            Building interactive dashboards and stakeholder-ready reports
+            in Tableau and Power BI.
           </>
         ),
         tags: [
@@ -222,27 +253,11 @@ const about: About = {
         description: (
           <>
             Advanced formulas, pivot tables, VLOOKUP/XLOOKUP, and data
-            modeling for business reporting and ad-hoc analysis.
+            modeling for business reporting and ad hoc analysis.
           </>
         ),
         tags: [
-          { name: "Excel", icon: "table" },
-          { name: "Pivot Tables", icon: "table" },
-        ],
-        images: [],
-      },
-      {
-        title: "Statistics & Analytics Methods",
-        description: (
-          <>
-            Descriptive statistics, hypothesis testing, A/B test analysis, and
-            regression to support data-driven recommendations.
-          </>
-        ),
-        tags: [
-          { name: "Statistics", icon: "chart" },
-          { name: "A/B Testing", icon: "chart" },
-          { name: "Regression", icon: "chart" },
+          { name: "Excel", icon: "spreadsheet" },
         ],
         images: [],
       },
@@ -254,19 +269,19 @@ const blog: Blog = {
   path: "/blog",
   label: "Insights",
   title: "Data Analytics Insights & Tutorials",
-  description: `SQL walkthroughs, Python tips, and lessons from real data projects — by ${person.name}`,
+  description: `SQL walkthroughs, Python tips, and lessons from real data projects by ${person.name}`,
 };
 
 const work: Work = {
   path: "/work",
-  label: "Projects",
+  label: "Work",
   title: `Data Analytics Projects – ${person.name}`,
   description: `SQL, Python, Tableau, and Power BI projects by ${person.name}`,
 };
 
 const gallery: Gallery = {
   path: "/gallery",
-  label: "Dashboards",
+  label: "Gallery",
   title: `Dashboard Gallery – ${person.name}`,
   description: `A collection of data visualizations and dashboards built with Tableau, Power BI, and Python`,
   images: [
