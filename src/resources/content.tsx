@@ -104,8 +104,7 @@ const about: About = {
         📧 <strong>Email me at:</strong>{" "}
         
           href="mailto:cjjohnazurapaulin2022@gmail.com"
-          style={{ color: "#007bff", textDecoration: "underline" }}
-        >
+          style={{ color: "#007bff", textDecoration: "underline" }}>
           cjjohnazurapaulin2022@gmail.com
         </a>
       </>
