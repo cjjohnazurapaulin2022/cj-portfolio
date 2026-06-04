@@ -102,11 +102,7 @@ const about: About = {
         time, identifying revenue opportunities, or optimizing marketing spend.
         <br /><br />
         📧 <strong>Email me at:</strong>{" "}
-        
-          href="mailto:cjjohnazurapaulin2022@gmail.com"
-          style={{ color: "#007bff", textDecoration: "underline" }}>
-          cjjohnazurapaulin2022@gmail.com
-        </a>
+        cjjohnazurapaulin2022@gmail.com
       </>
     ),
   },
