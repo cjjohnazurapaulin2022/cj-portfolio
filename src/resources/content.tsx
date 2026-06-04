@@ -57,7 +57,7 @@ const home: Home = {
         </Text>
       </Row>
     ),
-    href: "/work/sales-dashboard",
+    href: "/work",
   },
   subline: (
     <>
