@@ -25,18 +25,18 @@ const social: Social = [
     link: "https://github.com/cjjohnazurapaulin2022",
     essential: true,
   },
- {
-  name: "LinkedIn",
-  icon: "linkedin",
-  link: "https://www.linkedin.com/in/cj-john-paulin-6b29aa2ba",
-  essential: true,
-},
   {
-  name: "Email",
-  icon: "email",
-  link: "mailto:cjjohnazurapaulin2022@gmail.com",
-  essential: true,
-},
+    name: "LinkedIn",
+    icon: "linkedin",
+    link: "https://www.linkedin.com/in/cj-john-paulin-6b29aa2ba",
+    essential: true,
+  },
+  {
+    name: "Email",
+    icon: "email",
+    link: "mailto:cjjohnazurapaulin2022@gmail.com",
+    essential: true,
+  },
 ];
 
 const home: Home = {
@@ -53,7 +53,7 @@ const home: Home = {
         <strong className="ml-4">Featured Project</strong>{" "}
         <Line background="brand-alpha-strong" vert height="20" />
         <Text marginRight="4" onBackground="brand-medium">
-          Sales Performance Dashboard
+          Digital Marketing Campaign Analysis
         </Text>
       </Row>
     ),
@@ -61,7 +61,12 @@ const home: Home = {
   },
   subline: (
     <>
-    I'm CJ, a data analyst specializing in <Text as="span" size="xl" weight="strong">SQL,Excel, Python, and Business Intelligence</Text>. I turn complex data into actionable insights that drive business growth and data-informed decisions.
+      I'm CJ, a data analyst specializing in{" "}
+      <Text as="span" size="xl" weight="strong">
+        SQL, Excel, Python, and Business Intelligence
+      </Text>
+      . I turn complex data into actionable insights that drive business growth
+      and data-informed decisions.
     </>
   ),
 };
@@ -83,35 +88,52 @@ const about: About = {
     link: "https://cal.com",
   },
   intro: {
-  display: true,
-  title: "Introduction",
-  description: (
-    <>
-      I'm a data analyst passionate about uncovering insights that drive business decisions. 
-      With expertise in SQL, Python, and data visualization tools like Tableau and Power BI, 
-      I transform raw data into compelling stories and actionable recommendations.
-      
-      My approach combines technical rigor with business acumen. I focus on delivering measurable 
-      outcomes - whether that's reducing reporting time, identifying revenue opportunities, 
-      or optimizing marketing spend.
-      
-      <br /><br />
-      📧 <strong>Email me at:</strong> <a href="mailto:cjjohnazurapaulin2022@gmail.com" style={{color: "#007bff", textDecoration: "underline"}}>cjjohnazurapaulin2022@gmail.com</a>
-    </>
-  ),
-},
+    display: true,
+    title: "Introduction",
+    description: (
+      <>
+        I'm a data analyst passionate about uncovering insights that drive
+        business decisions. With expertise in SQL, Python, and data
+        visualization tools like Tableau and Power BI, I transform raw data
+        into compelling stories and actionable recommendations.
+        <br /><br />
+        My approach combines technical rigor with business acumen. I focus on
+        delivering measurable outcomes — whether that's reducing reporting
+        time, identifying revenue opportunities, or optimizing marketing spend.
+        <br /><br />
+        📧 <strong>Email me at:</strong>{" "}
+        
+          href="mailto:cjjohnazurapaulin2022@gmail.com"
+          style={{ color: "#007bff", textDecoration: "underline" }}
+        >
+          cjjohnazurapaulin2022@gmail.com
+        </a>
+      </>
+    ),
+  },
   work: {
     display: true,
-    title: "Data Analytics Experience",
+    title: "Projects & Self-Directed Work",
     experiences: [
       {
-        company: "Data Insights Co.",
-        timeframe: "2023 - Present",
-        role: "Data Analyst",
+        company: "Independent Data Analysis Projects",
+        timeframe: "2024 – Present",
+        role: "Data Analyst (Self-Directed)",
         achievements: [
-          <>Built interactive dashboards that reduced reporting time by 75%</>,
-          <>Analyzed customer behavior data to identify $500K in upsell opportunities</>,
-          <>Optimized complex SQL queries reducing execution time from 45 seconds to 2 seconds</>,
+          <>
+            Conducted end-to-end marketing campaign analysis using Python,
+            Pandas, and Seaborn — identifying spend inefficiencies and
+            high-ROI channels across multiple ad platforms.
+          </>,
+          <>
+            Built data cleaning pipelines and exploratory analysis workflows
+            in Jupyter Notebook, developing reusable templates for future
+            projects.
+          </>,
+          <>
+            Actively expanding skills toward data science through coursework
+            in statistics, machine learning fundamentals, and advanced SQL.
+          </>,
         ],
         images: [],
       },
@@ -188,9 +210,9 @@ const about: About = {
 
 const blog: Blog = {
   path: "/blog",
-  label: "Blog",
+  label: "Insights",
   title: "Data Analytics Insights & Tutorials",
-  description: `Sharing my learnings in SQL, Python, and data visualization`,
+  description: `SQL walkthroughs, Python tips, and lessons from real data projects by ${person.name}`,
 };
 
 const work: Work = {
