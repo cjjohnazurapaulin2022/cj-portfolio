@@ -25,18 +25,18 @@ const social: Social = [
     link: "https://github.com/cjjohnazurapaulin2022",
     essential: true,
   },
+ {
+  name: "LinkedIn",
+  icon: "linkedin",
+  link: "https://www.linkedin.com/in/cj-john-paulin-6b29aa2ba",
+  essential: true,
+},
   {
-    name: "LinkedIn",
-    icon: "linkedin",
-    link: "https://www.linkedin.com/in/cj-john-paulin-6b29aa2ba",
-    essential: true,
-  },
-  {
-    name: "Email",
-    icon: "email",
-    link: "mailto:cjjohnazurapaulin2022@gmail.com",
-    essential: true,
-  },
+  name: "Email",
+  icon: "email",
+  link: "mailto:cjjohnazurapaulin2022@gmail.com",
+  essential: true,
+},
 ];
 
 const home: Home = {
@@ -53,20 +53,15 @@ const home: Home = {
         <strong className="ml-4">Featured Project</strong>{" "}
         <Line background="brand-alpha-strong" vert height="20" />
         <Text marginRight="4" onBackground="brand-medium">
-          Digital Marketing Campaign Analysis
+          Sales Performance Dashboard
         </Text>
       </Row>
     ),
-    href: "/work/digital-marketing-campaign-analysis",
+    href: "/work/sales-dashboard",
   },
   subline: (
     <>
-      I'm CJ, a data analyst specializing in{" "}
-      <Text as="span" size="xl" weight="strong">
-        SQL, Excel, Python, and Business Intelligence
-      </Text>
-      . I turn complex data into actionable insights that drive business growth
-      and data-informed decisions.
+    I'm CJ, a data analyst specializing in <Text as="span" size="xl" weight="strong">SQL,Excel, Python, and Business Intelligence</Text>. I turn complex data into actionable insights that drive business growth and data-informed decisions.
     </>
   ),
 };
@@ -88,52 +83,35 @@ const about: About = {
     link: "https://cal.com",
   },
   intro: {
-    display: true,
-    title: "Introduction",
-    description: (
-      <>
-        I'm a data analyst passionate about uncovering insights that drive
-        business decisions. With expertise in SQL, Python, and data
-        visualization tools like Tableau and Power BI, I transform raw data
-        into compelling stories and actionable recommendations.
-        <br /><br />
-        My approach combines technical rigor with business acumen. I focus on
-        delivering measurable outcomes — whether that's reducing reporting
-        time, identifying revenue opportunities, or optimizing marketing spend.
-        <br /><br />
-        📧 <strong>Email me at:</strong>{" "}
-        
-          href="mailto:cjjohnazurapaulin2022@gmail.com"
-          style={{ color: "#007bff", textDecoration: "underline" }}
-        >
-          cjjohnazurapaulin2022@gmail.com
-        </a>
-      </>
-    ),
-  },
+  display: true,
+  title: "Introduction",
+  description: (
+    <>
+      I'm a data analyst passionate about uncovering insights that drive business decisions. 
+      With expertise in SQL, Python, and data visualization tools like Tableau and Power BI, 
+      I transform raw data into compelling stories and actionable recommendations.
+      
+      My approach combines technical rigor with business acumen. I focus on delivering measurable 
+      outcomes - whether that's reducing reporting time, identifying revenue opportunities, 
+      or optimizing marketing spend.
+      
+      <br /><br />
+      📧 <strong>Email me at:</strong> <a href="mailto:cjjohnazurapaulin2022@gmail.com" style={{color: "#007bff", textDecoration: "underline"}}>cjjohnazurapaulin2022@gmail.com</a>
+    </>
+  ),
+},
   work: {
     display: true,
-    title: "Projects & Self-Directed Work",
+    title: "Data Analytics Experience",
     experiences: [
       {
-        company: "Independent Data Analysis Projects",
-        timeframe: "2024 – Present",
-        role: "Data Analyst (Self-Directed)",
+        company: "Data Insights Co.",
+        timeframe: "2023 - Present",
+        role: "Data Analyst",
         achievements: [
-          <>
-            Conducted end-to-end marketing campaign analysis using Python,
-            Pandas, and Seaborn — identifying spend inefficiencies and
-            high-ROI channels across multiple ad platforms.
-          </>,
-          <>
-            Built data cleaning pipelines and exploratory analysis workflows
-            in Jupyter Notebook, developing reusable templates for future
-            projects.
-          </>,
-          <>
-            Actively expanding skills toward data science through coursework
-            in statistics, machine learning fundamentals, and advanced SQL.
-          </>,
+          <>Built interactive dashboards that reduced reporting time by 75%</>,
+          <>Analyzed customer behavior data to identify $500K in upsell opportunities</>,
+          <>Optimized complex SQL queries reducing execution time from 45 seconds to 2 seconds</>,
         ],
         images: [],
       },
@@ -145,58 +123,23 @@ const about: About = {
     institutions: [
       {
         name: "Certification 1",
-        description: (
-          <>
-            📄{" "}
-            <a href="/images/certifications/cert1.png" target="_blank">
-              View Certificate →
-            </a>
-          </>
-        ),
+        description: <>📄 <a href="/images/certifications/cert1.png" target="_blank">View Certificate →</a></>,
       },
       {
         name: "Certification 2",
-        description: (
-          <>
-            📄{" "}
-            <a href="/images/certifications/cert2.png" target="_blank">
-              View Certificate →
-            </a>
-          </>
-        ),
+        description: <>📄 <a href="/images/certifications/cert2.png" target="_blank">View Certificate →</a></>,
       },
       {
         name: "Certification 3",
-        description: (
-          <>
-            📄{" "}
-            <a href="/images/certifications/cert3.png" target="_blank">
-              View Certificate →
-            </a>
-          </>
-        ),
+        description: <>📄 <a href="/images/certifications/cert3.png" target="_blank">View Certificate →</a></>,
       },
       {
         name: "Certification 4",
-        description: (
-          <>
-            📄{" "}
-            <a href="/images/certifications/cert4.png" target="_blank">
-              View Certificate →
-            </a>
-          </>
-        ),
+        description: <>📄 <a href="/images/certifications/cert4.png" target="_blank">View Certificate →</a></>,
       },
       {
         name: "Certification 5",
-        description: (
-          <>
-            📄{" "}
-            <a href="/images/certifications/cert5.png" target="_blank">
-              View Certificate →
-            </a>
-          </>
-        ),
+        description: <>📄 <a href="/images/certifications/cert5.png" target="_blank">View Certificate →</a></>,
       },
     ],
   },
@@ -207,10 +150,7 @@ const about: About = {
       {
         title: "SQL & Databases",
         description: (
-          <>
-            Advanced SQL queries, database design, and query optimization
-            across PostgreSQL, MySQL, and BigQuery.
-          </>
+          <>Advanced SQL queries, database design, query optimization across PostgreSQL, MySQL, and BigQuery</>
         ),
         tags: [
           { name: "PostgreSQL", icon: "database" },
@@ -222,10 +162,7 @@ const about: About = {
       {
         title: "Python for Data Analysis",
         description: (
-          <>
-            Pandas, NumPy, Matplotlib, and Seaborn for data cleaning,
-            exploratory analysis, and visualization.
-          </>
+          <>Pandas, NumPy, Matplotlib for data cleaning, analysis, and visualization</>
         ),
         tags: [
           { name: "Python", icon: "python" },
@@ -235,29 +172,13 @@ const about: About = {
         images: [],
       },
       {
-        title: "Data Visualization & BI",
+        title: "Data Visualization",
         description: (
-          <>
-            Building interactive dashboards and stakeholder-ready reports
-            in Tableau and Power BI.
-          </>
+          <>Creating interactive dashboards in Tableau and Power BI</>
         ),
         tags: [
           { name: "Tableau", icon: "chart" },
           { name: "Power BI", icon: "chart" },
-        ],
-        images: [],
-      },
-      {
-        title: "Excel & Spreadsheet Analysis",
-        description: (
-          <>
-            Advanced formulas, pivot tables, VLOOKUP/XLOOKUP, and data
-            modeling for business reporting and ad hoc analysis.
-          </>
-        ),
-        tags: [
-          { name: "Excel", icon: "spreadsheet" },
         ],
         images: [],
       },
@@ -267,9 +188,9 @@ const about: About = {
 
 const blog: Blog = {
   path: "/blog",
-  label: "Insights",
+  label: "Blog",
   title: "Data Analytics Insights & Tutorials",
-  description: `SQL walkthroughs, Python tips, and lessons from real data projects by ${person.name}`,
+  description: `Sharing my learnings in SQL, Python, and data visualization`,
 };
 
 const work: Work = {
@@ -283,7 +204,7 @@ const gallery: Gallery = {
   path: "/gallery",
   label: "Gallery",
   title: `Dashboard Gallery – ${person.name}`,
-  description: `A collection of data visualizations and dashboards built with Tableau, Power BI, and Python`,
+  description: `A collection of data visualizations and dashboards`,
   images: [
     {
       src: "/images/gallery/sales-dashboard.jpg",
