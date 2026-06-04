@@ -1,0 +1,87 @@
+---
+title: "Digital Marketing Campaign Performance Analysis"
+publishedAt: "2025-01-15"
+summary: "Uncovering what drives ROI, identifying wasted spend, and timing the perfect Q4 campaign push across 300 campaigns, 4 channels, and 3 audience segments."
+images:
+  - "/images/projects/dm-01-monthly-trends.png"
+team:
+  - name: "CJ John Paulin"
+    role: "Data Analyst"
+---
+
+## The Problem
+
+A digital marketing team running campaigns across four channels — Social, Search, Email, and Display — needed answers to three critical questions their dashboard wasn't telling them:
+
+- Which channels are actually generating returns, and which are consuming budget without proportional results?
+- Which audience segments convert best, and are we spending enough to reach them?
+- Is our Q4 revenue spike something we created with more spend — or organic seasonal demand we could be capitalizing on more?
+
+Without answers, the team risks over-investing in underperforming channels, under-investing in high-efficiency ones, and missing the optimal window to push Q4 budget for maximum return.
+
+## Dataset
+
+300 campaigns · 12 months · 4 channels · 3 audience segments · 12 variables including spend, revenue, impressions, clicks, conversions, CTR, conversion rate, and ROI.
+
+## Process
+
+This analysis applies a three-layer analytical framework: **Descriptive** (what happened) → **Diagnostic** (why it happened) → **Prescriptive** (what to do).
+
+**Data Cleaning & EDA**
+The dataset was clean with zero null values and no duplicates across all 300 records. Key derived metrics — cost per conversion, revenue/spend ratio, and opportunity gap scores — were engineered in Pandas to power the diagnostic layer.
+
+**Channel Performance Analysis**
+Channels were ranked across CTR, conversion rate, ROI, and spend to identify structural performance gaps — not just surface-level averages.
+
+**Segment × Channel Matrix**
+A cross-tabulation of ROI and spend by all channel-segment combinations revealed opportunity gaps: combinations with high ROI but disproportionately low spend.
+
+**Seasonal Decomposition**
+Month-over-month revenue and spend growth rates were compared to determine whether Q4 peaks were spend-driven or demand-driven.
+
+## Results
+
+- **Search dominated ROI** at an average of 53.8x, followed by Email (31.3x), Social (23.2x), and Display (4.4x) — a gap wide enough to justify immediate reallocation
+- **Email is the most underfunded channel** — it ranks #1 in conversion rate (4.95%) but receives the smallest budget (avg spend $4,547 vs Search's $13,726)
+- **Display fails across every segment** — ROI ranges from just 0.25 to 8.5 across all three audiences, making it the clearest reallocation target in the portfolio
+- **Email × Professionals is the #1 missed opportunity** — ROI of 63.3 on only $5,753 avg spend, with an opportunity gap score of +7 (highest in the dataset)
+- **Q4 peaks are demand-driven, not spend-driven** — December revenue hit $23.13M on only $302K spend (76.5x ratio), with revenue growth of +52% on just +3% additional spend
+- **Professionals are the most efficient audience** — highest conversion rate (5.17%), highest ROI (53.3), and lowest cost per conversion ($20.09 vs Seniors at $42.89)
+- **Optimal Q4 launch window starts late September** — September showed +295% revenue growth on only +34% spend growth, meaning demand builds before Q4 officially starts
+
+## Visual Highlights
+
+### 1. Monthly Spend, Revenue & ROI Trends
+![Monthly Spend Revenue and ROI Trends](/images/projects/dm-01-monthly-trends.png)
+*Q4 revenue dramatically outpaced spend growth — December delivered 76.5x revenue per dollar spent.*
+
+### 2. Segment Performance
+![Segment Performance](/images/projects/dm-02-segment-performance.png)
+*Professionals outperform across every metric — highest ROI, highest conversion rate, lowest cost per conversion.*
+
+### 3. What Drives Q4 Peaks
+![What Drives Q4 Peaks](/images/projects/dm-03-q4-drivers.png)
+*Revenue growth consistently outpaced spend in Q4, confirming seasonal demand — not just budget increases — drove the peaks.*
+
+### 4. Which Channel × Segment Combination Is Under-Invested
+![Under-Invested Channel Segment Combinations](/images/projects/dm-04-opportunity-gap.png)
+*Email × Professionals has the largest opportunity gap (+7) — second-highest ROI in the portfolio but the smallest budget.*
+
+### 5. Why the Top Channel Outperforms
+![Why Search Outperforms](/images/projects/dm-05-channel-drivers.png)
+*Search wins at both ends of the funnel — highest CTR and near-top conversion rate. Email's hidden advantage: #1 in conversion rate despite #4 in spend.*
+
+## Full Interactive Report
+
+The complete analysis including all Python code, charts, and findings is available as an interactive HTML report:
+
+[**→ View Full Report**](/reports/PROJECT_3_.html)
+
+> The full report shows the end-to-end analytical process — from raw data to final budget recommendations.
+
+## Key Takeaways
+
+- **Channel mix matters more than total budget.** Search and Email together justify increased investment; Display justified a cut across every single audience segment without exception.
+- **The highest-converting channel was the most underfunded.** Email ranked #1 in conversion rate but received the least budget — a structural misallocation that compounded across all 12 months.
+- **Q4 peaks are a demand window, not a spend window.** Revenue efficiency peaked in December at 76.5x — meaning the right strategy is to enter early (late September) and let demand do the work.
+- **Segment targeting changes everything.** Professionals returned $20 per conversion vs $42 for Seniors — same channel, same spend, dramatically different outcomes based purely on audience selection.
