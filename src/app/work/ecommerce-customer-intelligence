@@ -1,0 +1,96 @@
+---
+title: "E-Commerce Customer Intelligence Report"
+publishedAt: "2025-02-10"
+summary: "RFM segmentation, cohort retention, and CLV modeling on 524,878 real e-commerce transactions — turning customer data into a revenue-impact action plan."
+images:
+  - "/images/project-4/g1_rfm_segmentation.png"
+team:
+  - name: "CJ John Paulin"
+    role: "Data Analyst"
+---
+
+## The Problem
+
+An online retailer has years of transaction data sitting in a database — but no clear answer to the questions that actually drive revenue decisions:
+
+- Which customers are worth protecting, and which are worth investing in?
+- Why do most customers disappear after their first purchase, and when does that risk peak?
+- If the business had to act on just three things this month, what would deliver the highest return?
+
+This project answers those questions using the UCI Online Retail dataset — 524,878 cleaned transactions, 4,335 unique customers, and £10,642,110 in total revenue — and turns the analysis into a set of dollar-figure recommendations a business could act on immediately.
+
+## Dataset
+
+541,909 raw transaction rows from a UK-based online retailer, covering 4,335 unique customers after removing records with missing CustomerID. 7.7% of gross revenue came from cancelled or returned orders, which were excluded from revenue calculations to avoid overstating performance.
+
+## Process
+
+This analysis follows a four-layer framework: **Descriptive** (what happened) → **Diagnostic** (why it happened) → **Prescriptive** (what to do) → **Predictive** (what it's worth).
+
+**Data Cleaning & Validation**
+Raw transaction data was cleaned to remove cancellations, refunds, and missing CustomerIDs, with each exclusion documented so revenue figures reflect real, completed sales.
+
+**RFM Segmentation**
+Customers were scored on Recency, Frequency, and Monetary value, then grouped into actionable segments (VIP, Loyal, At Risk, Lost, etc.) rather than left as raw scores — the kind of segmentation a marketing team can actually use.
+
+**Cohort Retention Analysis**
+Customers were grouped by their first purchase month and tracked over time to find exactly when and why retention drops off.
+
+**Customer Lifetime Value (CLV) Modeling**
+Each segment's CLV was estimated and compared against the cost of likely retention or win-back actions, turning "this segment is valuable" into "this action is worth £X."
+
+## Results
+
+- **Total revenue analyzed: £10,642,110** across 524,878 transactions from 4,335 unique customers, after removing the 7.7% of gross revenue tied to cancellations and returns
+- **VIP reward program projected at 8,634% ROI** — a modeled £50 reward against the average VIP customer's revenue contribution
+- **At Risk customers carry an average CLV of £425** — recovering a single At Risk customer for an estimated £85 outreach cost returns roughly 5x on that investment
+- **Retention drops sharply after Month 1** — customers who don't return within their first month almost never come back, identifying the single highest-leverage intervention window
+- **Revenue concentration follows a clear Pareto pattern** — a small share of customers drives a disproportionate share of total revenue, confirming VIP retention as a higher-leverage priority than broad acquisition
+- **Three-scenario revenue projection** (Pessimistic / Realistic / Optimistic) was built for the recommended actions, with assumptions stated explicitly rather than presented as guaranteed outcomes
+
+## Visual Highlights
+
+### 1. Geographic Revenue Distribution
+
+<img src="/images/project-4/d3_geographic_revenue.png" alt="Geographic Revenue Distribution" style={{width:"100%", borderRadius:"8px"}} />
+
+*Revenue is concentrated in a handful of markets, raising the question of where growth investment would be most efficient.*
+
+### 2. Customer Purchase Behavior
+
+<img src="/images/project-4/d5_customer_behavior.png" alt="Customer Purchase Behavior" style={{width:"100%", borderRadius:"8px"}} />
+
+*Purchase frequency is heavily right-skewed — most customers buy rarely, while a small group purchases repeatedly and drives outsized revenue.*
+
+### 3. RFM Customer Segmentation
+
+<img src="/images/project-4/g1_rfm_segmentation.png" alt="RFM Customer Segmentation" style={{width:"100%", borderRadius:"8px"}} />
+
+*Customers split into clear actionable segments — VIP, Loyal, At Risk, and Lost — each requiring a different retention or win-back strategy.*
+
+### 4. Cohort Retention Analysis
+
+<img src="/images/project-4/g2_cohort_retention.png" alt="Cohort Retention Analysis" style={{width:"100%", borderRadius:"8px"}} />
+
+*Retention falls off a cliff after the first month, pinpointing exactly when intervention matters most.*
+
+### 5. Revenue Concentration (Pareto Analysis)
+
+<img src="/images/project-4/g3_revenue_concentration.png" alt="Revenue Concentration Analysis" style={{width:"100%", borderRadius:"8px"}} />
+
+*A small share of customers generates a disproportionate share of total revenue — the core justification for prioritizing VIP retention over broad acquisition spend.*
+
+## Full Interactive Report
+
+The complete analysis — including all code, methodology, and the full three-scenario revenue model — is available as an interactive HTML report:
+
+[**→ View Full Report**](/reports/E-Commerce_Customer_Intelligence_Report.html)
+
+> The full report includes the "Three Actions for Monday Morning" executive summary, detailed CLV modeling, and all supporting diagnostics.
+
+## Key Takeaways
+
+- **Segmentation without action plans is just a chart.** RFM scores only became useful once each segment was tied to a specific retention or win-back action with an estimated cost and return.
+- **The first month is the highest-leverage retention window.** Cohort analysis showed that customers who don't return within Month 1 almost never come back — meaning early intervention beats long-term win-back campaigns.
+- **Revenue concentration justifies where to spend retention budget.** A small group of customers drives a disproportionate share of revenue, making VIP protection a higher-priority investment than broad-based acquisition.
+- **Every recommendation included a number, not just a direction.** From 8,634% projected ROI on VIP rewards to a 5x return on At Risk recovery, tying findings to financial impact is what turns analysis into something a business can act on.
