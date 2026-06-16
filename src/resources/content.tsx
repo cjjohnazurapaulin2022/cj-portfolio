@@ -53,11 +53,11 @@ const home: Home = {
         <strong className="ml-4">Featured Project</strong>{" "}
         <Line background="brand-alpha-strong" vert height="20" />
         <Text marginRight="4" onBackground="brand-medium">
-          Digital Marketing Campaign Analysis
+          E-Commerce Customer Intelligence Report
         </Text>
       </Row>
     ),
-    href: "/work",
+    href: "/work/ecommerce-customer-intelligence",
   },
   subline: (
     <>
@@ -116,14 +116,16 @@ const about: About = {
         role: "Data Analyst (Self-Directed)",
         achievements: [
           <>
-            Conducted end-to-end marketing campaign analysis using Python,
-            Pandas, and Seaborn — identifying spend inefficiencies and
-            high-ROI channels across multiple ad platforms.
+            Built an end-to-end customer intelligence analysis on 524,878
+            real e-commerce transactions — combining RFM segmentation,
+            cohort retention, and CLV modeling into a revenue-impact action
+            plan.
           </>,
           <>
-            Built data cleaning pipelines and exploratory analysis workflows
-            in Jupyter Notebook, developing reusable templates for future
-            projects.
+            Conducted a digital marketing campaign performance analysis
+            using Python, Pandas, and Seaborn — identifying spend
+            inefficiencies and high-ROI channels across multiple ad
+            platforms.
           </>,
           <>
             Actively expanding skills toward data science through coursework
