@@ -141,23 +141,23 @@ const about: About = {
     title: "Certifications",
     institutions: [
       {
-        name: "Certification 1",
+        name: "Foundations: Data, Data, Everywhere",
         description: <>📄 <a href="/images/certifications/cert1.png" target="_blank">View Certificate →</a></>,
       },
       {
-        name: "Certification 2",
+        name: "Prepare, Clean, Transform and Load Data Using Power BI",
         description: <>📄 <a href="/images/certifications/cert2.png" target="_blank">View Certificate →</a></>,
       },
       {
-        name: "Certification 3",
+        name: "Analyze Data to Answer Questions",
         description: <>📄 <a href="/images/certifications/cert3.png" target="_blank">View Certificate →</a></>,
       },
       {
-        name: "Certification 4",
+        name: "Data Analysis with R Programming",
         description: <>📄 <a href="/images/certifications/cert4.png" target="_blank">View Certificate →</a></>,
       },
       {
-        name: "Certification 5",
+        name: "Process Data from Dirty to Clean",
         description: <>📄 <a href="/images/certifications/cert5.png" target="_blank">View Certificate →</a></>,
       },
     ],
