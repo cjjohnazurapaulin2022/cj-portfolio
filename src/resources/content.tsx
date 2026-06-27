@@ -149,5 +149,7 @@ const about: About = {
         description: <>📄 <a href="/images/certifications/cert2.png" target="_blank">View Certificate →</a></>,
       },
       {
+        {
         name: "Analyze Data to Answer Questions",
-        description: <>📄 <a href="/images/certifications/cert3.png"
+        description: <>📄 <a href="/images/certifications/cert3.png" target="_blank">View Certificate →</a></>,
+      },
