@@ -1,4 +1,4 @@
-import { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/types";
+import { About, Home, Newsletter, Person, Social, Work } from "@/types";
 import { Line, Row, Text } from "@once-ui-system/core";
 
 const person: Person = {
@@ -150,92 +150,4 @@ const about: About = {
       },
       {
         name: "Analyze Data to Answer Questions",
-        description: <>📄 <a href="/images/certifications/cert3.png" target="_blank">View Certificate →</a></>,
-      },
-      {
-        name: "Data Analysis with R Programming",
-        description: <>📄 <a href="/images/certifications/cert4.png" target="_blank">View Certificate →</a></>,
-      },
-      {
-        name: "Process Data from Dirty to Clean",
-        description: <>📄 <a href="/images/certifications/cert5.png" target="_blank">View Certificate →</a></>,
-      },
-    ],
-  },
-  technical: {
-    display: true,
-    title: "Technical Skills",
-    skills: [
-      {
-        title: "SQL & Databases",
-        description: (
-          <>Advanced SQL queries, database design, query optimization across PostgreSQL, MySQL, and BigQuery</>
-        ),
-        tags: [
-          { name: "PostgreSQL", icon: "database" },
-          { name: "MySQL", icon: "database" },
-          { name: "BigQuery", icon: "database" },
-        ],
-        images: [],
-      },
-      {
-        title: "Python for Data Analysis",
-        description: (
-          <>Pandas, NumPy, Matplotlib for data cleaning, analysis, and visualization</>
-        ),
-        tags: [
-          { name: "Python", icon: "python" },
-          { name: "Pandas", icon: "code" },
-          { name: "NumPy", icon: "code" },
-        ],
-        images: [],
-      },
-      {
-        title: "Data Visualization",
-        description: (
-          <>Creating interactive dashboards in Tableau and Power BI</>
-        ),
-        tags: [
-          { name: "Tableau", icon: "chart" },
-          { name: "Power BI", icon: "chart" },
-        ],
-        images: [],
-      },
-    ],
-  },
-};
-
-const blog: Blog = {
-  path: "/blog",
-  label: "Insights",
-  title: "Data Analytics Insights & Tutorials",
-  description: `SQL walkthroughs, Python tips, and lessons from real data projects by ${person.name}`,
-};
-
-const work: Work = {
-  path: "/work",
-  label: "Work",
-  title: `Data Analytics Projects – ${person.name}`,
-  description: `SQL, Python, Tableau, and Power BI projects by ${person.name}`,
-};
-
-const gallery: Gallery = {
-  path: "/gallery",
-  label: "Gallery",
-  title: `Dashboard Gallery – ${person.name}`,
-  description: `A collection of data visualizations and dashboards`,
-  images: [
-    {
-      src: "/images/gallery/sales-dashboard.jpg",
-      alt: "Sales Performance Dashboard",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/churn-analysis.jpg",
-      alt: "Customer Churn Analysis",
-      orientation: "horizontal",
-    },
-  ],
-};
-
-export { person, social, newsletter, home, about, blog, work, gallery };
+        description: <>📄 <a href="/images/certifications/cert3.png"
