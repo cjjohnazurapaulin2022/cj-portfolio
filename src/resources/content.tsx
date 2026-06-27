@@ -1,4 +1,4 @@
-import { About, Home, Newsletter, Person, Social, Work } from "@/types";
+import { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/types";
 import { Line, Row, Text } from "@once-ui-system/core";
 
 const person: Person = {
@@ -50,4 +50,181 @@ const home: Home = {
     display: true,
     title: (
       <Row gap="12" vertical="center">
-        <strong className="ml-4">Featured
+        <strong className="ml-4">Featured Project</strong>{" "}
+        <Line background="brand-alpha-strong" vert height="20" />
+        <Text marginRight="4" onBackground="brand-medium">
+          E-Commerce Customer Intelligence Report
+        </Text>
+      </Row>
+    ),
+    href: "/work/ecommerce-customer-intelligence",
+  },
+  subline: (
+    <>
+      I'm CJ, a data analyst specializing in{" "}
+      <Text as="span" size="xl" weight="strong">
+        SQL, Excel, Python, and Business Intelligence
+      </Text>
+      . I turn complex data into actionable insights that drive business growth
+      and data-informed decisions.
+    </>
+  ),
+};
+
+const about: About = {
+  path: "/about",
+  label: "About",
+  title: `About – ${person.name}`,
+  description: `Meet ${person.name}, ${person.role} specializing in data analytics and business intelligence`,
+  tableOfContent: {
+    display: true,
+    subItems: false,
+  },
+  avatar: {
+    display: true,
+  },
+  calendar: {
+    display: false,
+    link: "https://cal.com",
+  },
+  intro: {
+    display: true,
+    title: "Introduction",
+    description: (
+      <>
+        I'm a data analyst passionate about uncovering insights that drive
+        business decisions. With expertise in SQL, Python, and data
+        visualization tools like Tableau and Power BI, I transform raw data
+        into compelling stories and actionable recommendations.
+        <br /><br />
+        My approach combines technical rigor with business acumen. I focus on
+        delivering measurable outcomes — whether that's reducing reporting
+        time, identifying revenue opportunities, or optimizing marketing spend.
+        <br /><br />
+        📧 <strong>Email me at:</strong>{" "}
+        cjjohnazurapaulin2022@gmail.com
+      </>
+    ),
+  },
+  work: {
+    display: true,
+    title: "Projects & Self-Directed Work",
+    experiences: [
+      {
+        company: "Independent Data Analysis Projects",
+        timeframe: "2024 – Present",
+        role: "Data Analyst (Self-Directed)",
+        achievements: [
+          <>
+            Built an end-to-end customer intelligence analysis on 524,878
+            real e-commerce transactions — combining RFM segmentation,
+            cohort retention, and CLV modeling into a revenue-impact action
+            plan.
+          </>,
+          <>
+            Conducted a digital marketing campaign performance analysis
+            using Python, Pandas, and Seaborn — identifying spend
+            inefficiencies and high-ROI channels across multiple ad
+            platforms.
+          </>,
+          <>
+            Actively expanding skills toward data science through coursework
+            in statistics, machine learning fundamentals, and advanced SQL.
+          </>,
+        ],
+        images: [],
+      },
+    ],
+  },
+  studies: {
+    display: true,
+    title: "Certifications",
+    institutions: [
+      {
+        name: "Foundations: Data, Data, Everywhere",
+        description: <>📄 <a href="/images/certifications/cert1.png" target="_blank">View Certificate →</a></>,
+      },
+      {
+        name: "Prepare, Clean, Transform and Load Data Using Power BI",
+        description: <>📄 <a href="/images/certifications/cert2.png" target="_blank">View Certificate →</a></>,
+      },
+      {
+        name: "Analyze Data to Answer Questions",
+        description: <>📄 <a href="/images/certifications/cert3.png" target="_blank">View Certificate →</a></>,
+      },
+      {
+        name: "Data Analysis with R Programming",
+        description: <>📄 <a href="/images/certifications/cert4.png" target="_blank">View Certificate →</a></>,
+      },
+      {
+        name: "Process Data from Dirty to Clean",
+        description: <>📄 <a href="/images/certifications/cert5.png" target="_blank">View Certificate →</a></>,
+      },
+    ],
+  },
+  technical: {
+    display: true,
+    title: "Technical Skills",
+    skills: [
+      {
+        title: "SQL & Databases",
+        description: (
+          <>Advanced SQL queries, database design, query optimization across PostgreSQL, MySQL, and BigQuery</>
+        ),
+        tags: [
+          { name: "PostgreSQL", icon: "database" },
+          { name: "MySQL", icon: "database" },
+          { name: "BigQuery", icon: "database" },
+        ],
+        images: [],
+      },
+      {
+        title: "Python for Data Analysis",
+        description: (
+          <>Pandas, NumPy, Matplotlib for data cleaning, analysis, and visualization</>
+        ),
+        tags: [
+          { name: "Python", icon: "python" },
+          { name: "Pandas", icon: "code" },
+          { name: "NumPy", icon: "code" },
+        ],
+        images: [],
+      },
+      {
+        title: "Data Visualization",
+        description: (
+          <>Creating interactive dashboards in Tableau and Power BI</>
+        ),
+        tags: [
+          { name: "Tableau", icon: "chart" },
+          { name: "Power BI", icon: "chart" },
+        ],
+        images: [],
+      },
+    ],
+  },
+};
+
+const blog: Blog = {
+  path: "/blog",
+  label: "Insights",
+  title: "Data Analytics Insights & Tutorials",
+  description: `SQL walkthroughs, Python tips, and lessons from real data projects by ${person.name}`,
+};
+
+const work: Work = {
+  path: "/work",
+  label: "Portfolio",
+  title: `Data Analytics Projects – ${person.name}`,
+  description: `SQL, Python, Tableau, and Power BI projects by ${person.name}`,
+};
+
+const gallery: Gallery = {
+  path: "/gallery",
+  label: "Gallery",
+  title: `Dashboard Gallery – ${person.name}`,
+  description: `A collection of data visualizations and dashboards`,
+  images: [],
+};
+
+export { person, social, newsletter, home, about, blog, work, gallery };
