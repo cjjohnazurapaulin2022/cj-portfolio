@@ -166,6 +166,25 @@ export const Header = () => {
                   </Row>
                 </>
               )}
+              {routes["/services"] && (
+                <>
+                  <Row s={{ hide: true }}>
+                    <ToggleButton
+                      prefixIcon="sparkle"
+                      href="/services"
+                      label="Services"
+                      selected={pathname.startsWith("/services")}
+                    />
+                  </Row>
+                  <Row hide s={{ hide: false }}>
+                    <ToggleButton
+                      prefixIcon="sparkle"
+                      href="/services"
+                      selected={pathname.startsWith("/services")}
+                    />
+                  </Row>
+                </>
+              )}
               {display.themeSwitcher && (
                 <>
                   <Line background="neutral-alpha-medium" vert maxHeight="24" />
