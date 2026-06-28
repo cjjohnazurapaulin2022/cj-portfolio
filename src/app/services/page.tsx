@@ -218,9 +218,8 @@ export default function Services() {
             borderRadius: "8px",
             textDecoration: "none",
             fontSize: "1rem",
-          }}
-        >
-          Book a Free Briefing Call &#8594; →
+          }}>
+          Book a Free Briefing Call
         </a>
         <p style={{ marginTop: "16px", opacity: 0.5, fontSize: "0.85rem" }}>
           Or email directly: cjjohnazurapaulin2022@gmail.com
