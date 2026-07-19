@@ -1,0 +1,150 @@
+---
+title: "Customer Churn Prediction System"
+publishedAt: "2026-07-19"
+summary: "A complete end-to-end machine learning system that predicts which e-commerce customers are about to churn — and automates monthly scoring, risk tiering, and action planning through a live Streamlit web application."
+images:
+  - "/images/project-5/churn_system_streamlit_frontpage.png"
+team:
+  - name: "CJ John Paulin"
+    role: "Data Analyst"
+---
+
+## Overview
+
+This project directly extends the [E-Commerce Customer Intelligence Report](/work/ecommerce-customer-intelligence). Where that project asked *"Who are our best and worst customers right now?"*, this one asks *"Who is about to leave — before they actually go?"*
+
+Project 3 used manually defined RFM rules to segment customers. This project replaces those rules with a machine learning model that learned churn patterns automatically from transaction history — and wraps the entire system in a live web application the store owner can use every month without any technical knowledge.
+
+Together, the two projects represent a complete end-to-end data analytics and machine learning engagement: from raw data exploration to automated production deployment.
+
+## The Problem
+
+Every e-commerce business loses customers silently. By the time a customer stops buying, it is already too late to intervene. The business needs a system that:
+
+- Identifies which customers are at risk of churning **before** they leave
+- Ranks them by revenue impact so intervention budget goes to the right customers first
+- Runs automatically every month without requiring a data analyst to operate it
+
+## Dataset & Feature Engineering
+
+Built on the same UCI Online Retail Dataset (541,909 transactions). A September 30, 2011 cutoff date was used to define churn — any customer with no purchase in the following 90 days was labeled as churned, producing a **48.8% churn rate** (well-balanced for modeling).
+
+9 features were engineered from transaction history:
+
+- Recency, Frequency, Monetary value
+- Average order value
+- Total items purchased
+- Unique products bought
+- Average days between orders
+- Customer tenure (days since first purchase)
+- Number of countries ordered from
+
+## Model Development & Evaluation
+
+Three models were trained and compared:
+
+| Model | ROC-AUC | Accuracy |
+|---|---|---|
+| Logistic Regression | **0.722** | **66.7%** |
+| Random Forest | 0.715 | 64.9% |
+| XGBoost | 0.718 | 65.2% |
+
+**Logistic Regression won on all metrics.** The model correctly identifies 72% of churning customers — significantly better than random guessing and interpretable enough to explain to a non-technical client.
+
+<img src="/images/project-5/model_evaluation_visual.png" alt="Model Evaluation Visual" style={{width:"100%", borderRadius:"8px"}} />
+
+*Model comparison across ROC-AUC, accuracy, precision, and recall.*
+
+## Customer Risk Tiering
+
+All 3,604 customers were scored with churn probability and classified into three actionable risk tiers:
+
+- **High Risk** — churn probability ≥ 0.70
+- **Medium Risk** — churn probability 0.40–0.69
+- **Low Risk** — churn probability below 0.40
+
+<img src="/images/project-5/Cus_churn_risk_tiers_&revenue_impact_analysis.png" alt="Customer Churn Risk Tiers and Revenue Impact Analysis" style={{width:"100%", borderRadius:"8px"}} />
+
+*Revenue distribution across risk tiers — showing where intervention budget delivers the highest return.*
+
+## Prescriptive Action Plan
+
+Every customer in the scored list received a specific recommended action based on their risk tier and revenue value. The action list is ranked by churn probability × customer revenue — ensuring the highest-value at-risk customers are contacted first.
+
+<img src="/images/project-5/prescriptive_action_plan.png" alt="Prescriptive Action Plan" style={{width:"100%", borderRadius:"8px"}} />
+
+*Ranked action list with color-coded risk tiers and tier-specific recommended interventions.*
+
+**Projected revenue recovery: £4.79M** if all recommendations are acted on across all risk tiers.
+
+## The Automated Deployment System
+
+This is what makes this project unique. Rather than a one-time analysis, I built a complete automated system with three components:
+
+**1. Excel Input Template**
+A professionally formatted `.xlsx` file with data validation rules, dropdown menus, locked formula cells, and instruction sheets. The client fills this in monthly with new transactions. Validation rules prevent common data entry errors — wrong formats, currency symbols, negative quantities, and blank required fields.
+
+**2. Streamlit Web Application**
+A password-protected web app where the client uploads their monthly Excel file. The app then:
+- Runs automated data cleaning with a cleaning report showing every row removed and why
+- Appends new data to a cumulative master database that grows every month
+- Engineers all 9 features from the full transaction history
+- Scores every customer using the trained Logistic Regression model
+- Classifies customers into High/Medium/Low Risk tiers
+- Displays a full 6-section monthly dashboard
+
+**3. Monthly Dashboard (6 Sections)**
+- Business overview — revenue, customers, new vs returning, top products
+- Churn risk summary — colored metric cards per tier with revenue distribution
+- Month-over-month comparison — churn probability trends, tier movement, campaign ROI tracker
+- Action list — ranked by churn probability × revenue with recommended actions
+- Revenue at risk and projected campaign recovery
+- Downloads — full scored customer list, priority action list, master transactions database
+
+After 6 months, the master database can be downloaded and used to retrain the model on real client data — making predictions more accurate over time.
+
+<img src="/images/project-5/churn_system_streamlit_frontpage.png" alt="Churn Prediction System Streamlit Front Page" style={{width:"100%", borderRadius:"8px"}} />
+
+*The live Streamlit web application — password protected, client-ready, no technical knowledge required to operate.*
+
+## System Demo Video
+
+See the full system in action — from uploading the monthly Excel file to viewing the churn risk dashboard and downloading the action list:
+
+<div style={{position:"relative", paddingBottom:"56.25%", height:0, overflow:"hidden", borderRadius:"12px", marginTop:"16px"}}>
+  <iframe
+    src="https://www.loom.com/embed/754dcbc657a64858834743776094680f"
+    style={{position:"absolute", top:0, left:0, width:"100%", height:"100%", border:"none"}}
+    allowFullScreen>
+  </iframe>
+</div>
+
+## Live Application & Full Report
+
+<div style={{display:"flex", gap:"16px", flexWrap:"wrap", marginTop:"16px"}}>
+  <a href="https://churn-prediction-app-cj.streamlit.app/" target="_blank" style={{display:"inline-block", backgroundColor:"#06b6d4", color:"#000", fontWeight:700, padding:"12px 24px", borderRadius:"8px", textDecoration:"none"}}>
+    Launch Live App
+  </a>
+  <a href="/reports/Customer_Churn_Prediction.html" target="_blank" style={{display:"inline-block", border:"1px solid rgba(128,128,128,0.4)", fontWeight:700, padding:"12px 24px", borderRadius:"8px", textDecoration:"none"}}>
+    View Full Report
+  </a>
+</div>
+
+## Business Value & Pricing Model
+
+This type of system is commercially deployable as a productized service:
+
+| Component | Price |
+|---|---|
+| One-time analysis fee | £300–500 |
+| One-time app setup fee | £200–400 |
+| Monthly retainer | £50–100/month |
+| Quarterly model retraining | £150–200/quarter |
+| **Single client annual value** | **£800–1,000 upfront + £600–1,200/year recurring** |
+
+## Key Takeaways
+
+- **Machine learning doesn't replace business thinking — it extends it.** The model's 9 features were engineered from domain understanding of what drives customer behavior, not just raw transaction columns.
+- **A model nobody can use is worthless.** Wrapping the ML pipeline in a Streamlit app with Excel input and automated reporting turns a one-time analysis into a reusable business tool.
+- **Churn prediction is most valuable as a ranking system, not a binary classifier.** Sorting customers by churn probability × revenue ensures intervention budget goes to the highest-impact customers first.
+- **Systems compound over time.** The master database grows every month, and after 6 months the model can be retrained on real client data — improving accuracy continuously without rebuilding from scratch.
