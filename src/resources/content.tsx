@@ -53,11 +53,11 @@ const home: Home = {
         <strong className="ml-4">Featured Project</strong>{" "}
         <Line background="brand-alpha-strong" vert height="20" />
         <Text marginRight="4" onBackground="brand-medium">
-          E-Commerce Customer Intelligence Report
+          Customer Churn Prediction System
         </Text>
       </Row>
     ),
-    href: "/work/ecommerce-customer-intelligence",
+    href: "/work/customer-churn-prediction",
   },
   subline: (
     <>
@@ -116,10 +116,10 @@ const about: About = {
         role: "Data Analyst (Self-Directed)",
         achievements: [
           <>
-            Built an end-to-end customer intelligence analysis on 524,878
-            real e-commerce transactions — combining RFM segmentation,
-            cohort retention, and CLV modeling into a revenue-impact action
-            plan.
+            Built a complete ML-powered churn prediction system on 541,909
+            real e-commerce transactions — including a live Streamlit web
+            app that scores customers monthly and generates automated
+            action plans, deployable as a £800–1,200/year client retainer.
           </>,
           <>
             Conducted a digital marketing campaign performance analysis
