@@ -1,0 +1,65 @@
+---
+title: "Cultivating Caraga: Optimizing Agricultural Land Allocation Across Five Provinces"
+publishedAt: "2026-09-18"
+summary: "A linear programming model that determines how Caraga Region should allocate farmland across five provinces and three major crops to maximize profit — without compromising food security."
+images:
+  - "/images/cultivating-caraga/optimal_allocation_chart.png"
+team:
+  - name: "CJ John Paulin"
+    role: "Data Analyst"
+---
+
+## Executive Summary
+
+Caraga Region's farmland decisions currently balance profit against food security with no formal framework — this project closes that gap using linear programming (a mathematical optimization method). The model determines the ideal split of farmland across five provinces and three major crops — rice, corn, and coconut — to maximize total farming profit, while guaranteeing rice and corn production never drops below 80% of today's levels, protecting the region's food supply. Built on real government production and cost data, the 21-constraint model identifies the allocation that generates the highest possible profit — **₱10.08 billion per cropping cycle** — without sacrificing food security. The result gives regional agricultural planners a data-backed, defensible starting point for land-use policy, rather than a purely profit-driven recommendation that risks the food supply.
+
+<img src="/images/cultivating-caraga/optimal_allocation_chart.png" alt="Optimal Farmland Allocation by Province" style={{width:"100%", borderRadius:"8px"}} />
+
+*The optimal hectare allocation per province — rice and corn held at their food-security floor, coconut absorbing all remaining land.*
+
+## The Problem
+
+Not every profitable choice is a good one. Coconut earns roughly 3x more profit per hectare than palay (rice) — so a model that only chases profit would push every province toward 100% coconut, crowding out the rice and corn that feed the region. The real question this project answers:
+
+> How should Caraga allocate its farmland across palay, corn, and coconut — across five provinces — to maximize profit, while making sure rice and corn farming don't disappear?
+
+Palay, corn, and coconut aren't an arbitrary shortlist — together they account for **~88% of all major-crop land** in Caraga, making them the crops that matter most to both the regional economy and food security.
+
+## Approach
+
+The work followed a five-step pipeline:
+
+1. **Collect** — pulled real production, area, and cost data from the Philippine Statistics Authority (PSA) and Philippine Coconut Authority (PCA) across all five provinces.
+2. **Calculate** — converted raw production numbers into yield-per-hectare and net-returns-per-hectare — the actual coefficients the model runs on.
+3. **Build** — defined 15 decision variables (5 provinces × 3 crops) and a profit-maximizing objective function.
+4. **Constrain** — added land limits, food-security floors, and realistic crop-share caps per province.
+5. **Solve & Present** — solved the model with PuLP (CBC solver) in Python, validated the result, and translated it into a decision-ready allocation.
+
+A first, unconstrained version of the model pushed every province to 100% coconut — a useful failure that confirmed why the food-security floors and growth caps were necessary, not optional.
+
+## Tools & Methods
+
+- **Python** — data processing and model orchestration
+- **PuLP (CBC solver)** — linear programming formulation and solving
+- **Jupyter Notebook** — analysis and validation
+- **PSA / PCA datasets** — production, area, and cost data across all five Caraga provinces
+
+## Key Findings & Results
+
+- **Maximum total profit: ₱10.08 billion** per cropping cycle across all five provinces — the highest achievable profit under real-world constraints.
+- **Food security fully protected** — palay and corn hold exactly at their 80% food-security floor in every province; production never drops below current levels.
+- **Full land utilization** — every hectare of available farmland across all five provinces is allocated, with zero idle capacity.
+- **Coconut absorbs all remaining land**, reaching its cap completely in Agusan del Sur — the model's most coconut-favorable province.
+- **21 constraints in total** (5 land caps, 5 palay floors, 5 corn floors, 5 coconut caps, 1 non-negativity) keep the solution realistic rather than purely theoretical.
+
+## Full Report
+
+<div style={{display:"flex", gap:"16px", flexWrap:"wrap", marginTop:"16px"}}>
+  <a href="/reports/Cultivating_Caraga_LP_Report.pdf" target="_blank" style={{display:"inline-block", backgroundColor:"#06b6d4", color:"#000", fontWeight:700, padding:"12px 24px", borderRadius:"8px", textDecoration:"none"}}>
+    Download Full Report (PDF)
+  </a>
+</div>
+
+## Get in Touch
+
+Interested in how this kind of optimization model could apply to your own resource-allocation problem — land, budget, staffing, or inventory? Feel free to reach out — I'd be glad to walk through the model in more detail.
