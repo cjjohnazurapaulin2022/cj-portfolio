@@ -261,7 +261,7 @@ export default function About() {
             </>
           )}
 
-                              {about.studies.display && (
+          {about.studies.display && (
             <>
               <Heading as="h2" id={about.studies.title} variant="display-strong-s" marginBottom="m">
                 {about.studies.title}
@@ -278,7 +278,7 @@ export default function About() {
                         <Row
                           border="neutral-medium"
                           radius="m"
-                          style={{ width: "200px", height: "150px", overflow: "hidden" }}
+                          style={{ width: "200px", height: "150px" }}
                         >
                           <Media
                             enlarge
