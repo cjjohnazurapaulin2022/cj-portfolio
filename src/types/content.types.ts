@@ -165,7 +165,7 @@ export interface About extends BasePageConfig {
       }>;
     }>;
   };
-  /** Studies/education section */
+    /** Studies/education section */
   studies: {
     /** Whether to display studies section */
     display: boolean;
@@ -177,6 +177,17 @@ export interface About extends BasePageConfig {
       name: string;
       /** Description of studies */
       description: React.ReactNode;
+      /** Certificate image, shown as a grid thumbnail with click-to-enlarge */
+      image?: {
+        /** Image source path */
+        src: string;
+        /** Image alt text */
+        alt: string;
+        /** Image width ratio */
+        width: number;
+        /** Image height ratio */
+        height: number;
+      };
     }>;
   };
   /** Technical skills section */
