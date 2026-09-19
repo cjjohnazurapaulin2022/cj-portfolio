@@ -143,30 +143,72 @@ const about: About = {
       {
         name: "Foundations: Data, Data, Everywhere",
         description: <>📄 <a href="/images/certifications/cert1.png" target="_blank">View Certificate →</a></>,
+        image: {
+          src: "/images/certifications/cert1.png",
+          alt: "Foundations: Data, Data, Everywhere certificate",
+          width: 180,
+          height: 180,
+        },
       },
       {
         name: "Prepare, Clean, Transform and Load Data Using Power BI",
         description: <>📄 <a href="/images/certifications/cert2.png" target="_blank">View Certificate →</a></>,
+        image: {
+          src: "/images/certifications/cert2.png",
+          alt: "Prepare, Clean, Transform and Load Data Using Power BI certificate",
+          width: 180,
+          height: 180,
+        },
       },
       {
         name: "Analyze Data to Answer Questions",
         description: <>📄 <a href="/images/certifications/cert3.png" target="_blank">View Certificate →</a></>,
+        image: {
+          src: "/images/certifications/cert3.png",
+          alt: "Analyze Data to Answer Questions certificate",
+          width: 180,
+          height: 180,
+        },
       },
       {
         name: "Data Analysis with R Programming",
         description: <>📄 <a href="/images/certifications/cert4.png" target="_blank">View Certificate →</a></>,
+        image: {
+          src: "/images/certifications/cert4.png",
+          alt: "Data Analysis with R Programming certificate",
+          width: 180,
+          height: 180,
+        },
       },
       {
         name: "Process Data from Dirty to Clean",
         description: <>📄 <a href="/images/certifications/cert5.png" target="_blank">View Certificate →</a></>,
+        image: {
+          src: "/images/certifications/cert5.png",
+          alt: "Process Data from Dirty to Clean certificate",
+          width: 180,
+          height: 180,
+        },
       },
       {
         name: "The Power of Statistics",
         description: <>📄 <a href="/images/certifications/cert6.png" target="_blank">View Certificate →</a></>,
+        image: {
+          src: "/images/certifications/cert6.png",
+          alt: "The Power of Statistics certificate",
+          width: 180,
+          height: 180,
+        },
       },
       {
         name: "Simplify Complex Data Relationships",
         description: <>📄 <a href="/images/certifications/cert7.png" target="_blank">View Certificate →</a></>,
+        image: {
+          src: "/images/certifications/cert7.png",
+          alt: "Simplify Complex Data Relationships certificate",
+          width: 180,
+          height: 180,
+        },
       },
     ],
   },
