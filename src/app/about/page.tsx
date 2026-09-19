@@ -261,23 +261,45 @@ export default function About() {
             </>
           )}
 
-          {about.studies.display && (
+                    {about.studies.display && (
             <>
               <Heading as="h2" id={about.studies.title} variant="display-strong-s" marginBottom="m">
                 {about.studies.title}
               </Heading>
-              <Column fillWidth gap="l" marginBottom="40">
-                {about.studies.institutions.map((institution, index) => (
-                  <Column key={`${institution.name}-${index}`} fillWidth gap="4">
-                    <Text id={institution.name} variant="heading-strong-l">
-                      {institution.name}
-                    </Text>
-                    <Text variant="heading-default-xs" onBackground="neutral-weak">
-                      {institution.description}
-                    </Text>
-                  </Column>
-                ))}
-              </Column>
+              <Row fillWidth gap="16" wrap marginBottom="40">
+                {about.studies.institutions.map(
+                  (institution, index) =>
+                    institution.image && (
+                      <Column
+                        key={`${institution.name}-${index}`}
+                        gap="8"
+                        style={{ width: `${institution.image.width}px` }}
+                      >
+                        <Row
+                          border="neutral-medium"
+                          radius="m"
+                          width={institution.image.width}
+                          height={institution.image.height}
+                        >
+                          <Media
+                            enlarge
+                            radius="m"
+                            sizes={institution.image.width.toString()}
+                            alt={institution.image.alt}
+                            src={institution.image.src}
+                          />
+                        </Row>
+                        <Text
+                          variant="label-default-s"
+                          onBackground="neutral-weak"
+                          align="center"
+                        >
+                          {institution.name}
+                        </Text>
+                      </Column>
+                    ),
+                )}
+              </Row>
             </>
           )}
 
