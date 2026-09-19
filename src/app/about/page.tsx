@@ -261,7 +261,7 @@ export default function About() {
             </>
           )}
 
-                    {about.studies.display && (
+                              {about.studies.display && (
             <>
               <Heading as="h2" id={about.studies.title} variant="display-strong-s" marginBottom="m">
                 {about.studies.title}
@@ -273,18 +273,19 @@ export default function About() {
                       <Column
                         key={`${institution.name}-${index}`}
                         gap="8"
-                        style={{ width: `${institution.image.width}px` }}
+                        style={{ width: "200px" }}
                       >
                         <Row
                           border="neutral-medium"
                           radius="m"
-                          width={institution.image.width}
-                          height={institution.image.height}
+                          style={{ width: "200px", height: "150px", overflow: "hidden" }}
                         >
                           <Media
                             enlarge
+                            fill
+                            objectFit="contain"
                             radius="m"
-                            sizes={institution.image.width.toString()}
+                            sizes="200px"
                             alt={institution.image.alt}
                             src={institution.image.src}
                           />
