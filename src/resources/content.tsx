@@ -160,6 +160,14 @@ const about: About = {
         name: "Process Data from Dirty to Clean",
         description: <>📄 <a href="/images/certifications/cert5.png" target="_blank">View Certificate →</a></>,
       },
+      {
+        name: "The Power of Statistics",
+        description: <>📄 <a href="/images/certifications/cert6.png" target="_blank">View Certificate →</a></>,
+      },
+      {
+        name: "Simplify Complex Data Relationships",
+        description: <>📄 <a href="/images/certifications/cert7.png" target="_blank">View Certificate →</a></>,
+      },
     ],
   },
   technical: {
