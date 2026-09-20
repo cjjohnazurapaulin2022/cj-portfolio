@@ -1,6 +1,6 @@
 import { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/types";
 import { Line, Row, Text } from "@once-ui-system/core";
-
+   
 const person: Person = {
   firstName: "CJ",
   lastName: "Paulin",
@@ -259,14 +259,14 @@ const about: About = {
     tools: [
       { name: "Python", icon: "https://cdn.simpleicons.org/python/3776AB" },
       { name: "R", icon: "https://cdn.simpleicons.org/r/276DC3" },
-      { name: "VS Code", icon: "https://cdn.simpleicons.org/visualstudiocode/007ACC" },
+      { name: "VS Code", icon: "https://cdn.jsdelivr.net/npm/devicon@2.17.0/icons/vscode/vscode-original.svg" },
       { name: "Jupyter Notebook", icon: "https://cdn.simpleicons.org/jupyter/F37626" },
       { name: "PostgreSQL", icon: "https://cdn.simpleicons.org/postgresql/4169E1" },
-      { name: "Excel", icon: "https://cdn.simpleicons.org/microsoftexcel/217346" },
-      { name: "Word", icon: "https://cdn.simpleicons.org/microsoftword/2B579A" },
-      { name: "PowerPoint", icon: "https://cdn.simpleicons.org/microsoftpowerpoint/B7472A" },
-      { name: "Power BI", icon: "https://cdn.simpleicons.org/powerbi/F2C811" },
-      { name: "Tableau", icon: "https://cdn.simpleicons.org/tableau/E97627" },
+      { name: "Excel", icon: "/images/tools/excel.png" },
+      { name: "Word", icon: "/images/tools/word.png" },
+      { name: "PowerPoint", icon: "/images/tools/powerpoint.png" },
+      { name: "Power BI", icon: "/images/tools/powerbi.png" },
+      { name: "Tableau", icon: "/images/tools/tableau.jpg" },
       { name: "Gmail", icon: "https://cdn.simpleicons.org/gmail/EA4335" },
       { name: "Google Meet", icon: "https://cdn.simpleicons.org/googlemeet/00897B" },
       { name: "Zoom", icon: "https://cdn.simpleicons.org/zoom/2D8CFF" },
