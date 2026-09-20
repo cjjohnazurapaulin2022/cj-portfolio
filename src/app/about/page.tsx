@@ -364,7 +364,7 @@ export default function About() {
             </>
           )}
 
-                    {about.toolsIUse.display && (
+          {about.toolsIUse.display && (
             <>
               <Heading
                 as="h2"
@@ -393,3 +393,8 @@ export default function About() {
               </Row>
             </>
           )}
+        </Column>
+      </Row>
+    </Column>
+  );
+}
