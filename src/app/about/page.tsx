@@ -49,6 +49,11 @@ export default function About() {
       display: about.technical.display,
       items: about.technical.skills.map((skill) => skill.title),
     },
+    {
+      title: about.toolsIUse.title,
+      display: about.toolsIUse.display,
+      items: about.toolsIUse.tools.map((tool) => tool.name),
+    },
   ];
   return (
     <Column maxWidth="m">
@@ -356,6 +361,36 @@ export default function About() {
                   </Column>
                 ))}
               </Column>
+            </>
+          )}
+
+          {about.toolsIUse.display && (
+            <>
+              <Heading
+                as="h2"
+                id={about.toolsIUse.title}
+                variant="display-strong-s"
+                marginBottom="m"
+              >
+                {about.toolsIUse.title}
+              </Heading>
+              <Row fillWidth gap="24" wrap marginBottom="40">
+                {about.toolsIUse.tools.map((tool, index) => (
+                  <Row
+                    key={`${tool.name}-${index}`}
+                    style={{ width: "56px", height: "56px" }}
+                  >
+                    <Media
+                      radius="s"
+                      objectFit="contain"
+                      fill
+                      sizes="56px"
+                      alt={tool.name}
+                      src={tool.icon}
+                    />
+                  </Row>
+                ))}
+              </Row>
             </>
           )}
         </Column>
