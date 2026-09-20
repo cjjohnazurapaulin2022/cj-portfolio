@@ -364,7 +364,7 @@ export default function About() {
             </>
           )}
 
-          {about.toolsIUse.display && (
+                    {about.toolsIUse.display && (
             <>
               <Heading
                 as="h2"
@@ -376,25 +376,20 @@ export default function About() {
               </Heading>
               <Row fillWidth gap="24" wrap marginBottom="40">
                 {about.toolsIUse.tools.map((tool, index) => (
-                  <Row
+                  <Column
                     key={`${tool.name}-${index}`}
-                    style={{ width: "56px", height: "56px" }}
+                    gap="8"
+                    horizontal="center"
+                    style={{ width: "56px" }}
                   >
-                    <Media
-                      radius="s"
-                      objectFit="contain"
-                      fill
-                      sizes="56px"
-                      alt={tool.name}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
                       src={tool.icon}
+                      alt={tool.name}
+                      style={{ width: "40px", height: "40px", objectFit: "contain" }}
                     />
-                  </Row>
+                  </Column>
                 ))}
               </Row>
             </>
           )}
-        </Column>
-      </Row>
-    </Column>
-  );
-}
