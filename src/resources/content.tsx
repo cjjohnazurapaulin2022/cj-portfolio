@@ -253,6 +253,27 @@ const about: About = {
       },
     ],
   },
+  toolsIUse: {
+    display: true,
+    title: "Tools I Use",
+    tools: [
+      { name: "Python", icon: "https://cdn.simpleicons.org/python/3776AB" },
+      { name: "R", icon: "https://cdn.simpleicons.org/r/276DC3" },
+      { name: "VS Code", icon: "https://cdn.simpleicons.org/visualstudiocode/007ACC" },
+      { name: "Jupyter Notebook", icon: "https://cdn.simpleicons.org/jupyter/F37626" },
+      { name: "PostgreSQL", icon: "https://cdn.simpleicons.org/postgresql/4169E1" },
+      { name: "Excel", icon: "https://cdn.simpleicons.org/microsoftexcel/217346" },
+      { name: "Word", icon: "https://cdn.simpleicons.org/microsoftword/2B579A" },
+      { name: "PowerPoint", icon: "https://cdn.simpleicons.org/microsoftpowerpoint/B7472A" },
+      { name: "Power BI", icon: "https://cdn.simpleicons.org/powerbi/F2C811" },
+      { name: "Tableau", icon: "https://cdn.simpleicons.org/tableau/E97627" },
+      { name: "Gmail", icon: "https://cdn.simpleicons.org/gmail/EA4335" },
+      { name: "Google Meet", icon: "https://cdn.simpleicons.org/googlemeet/00897B" },
+      { name: "Zoom", icon: "https://cdn.simpleicons.org/zoom/2D8CFF" },
+      { name: "Calendly", icon: "https://cdn.simpleicons.org/calendly/006BFF" },
+      { name: "Claude", icon: "https://cdn.simpleicons.org/claude/D97757" },
+    ],
+  },
 };
 
 const blog: Blog = {
