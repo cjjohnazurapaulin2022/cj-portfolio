@@ -220,6 +220,20 @@ export interface About extends BasePageConfig {
       }>;
     }>;
   };
+  /** Tools I Use section */
+  toolsIUse: {
+    /** Whether to display the tools section */
+    display: boolean;
+    /** Title for the tools section */
+    title: string;
+    /** List of tools, shown as a plain icon grid */
+    tools: Array<{
+      /** Tool name (used as alt text) */
+      name: string;
+      /** Icon image URL */
+      icon: string;
+    }>;
+  };
 }
 
 /**
