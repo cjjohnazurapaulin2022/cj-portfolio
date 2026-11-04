@@ -1,35 +1,3 @@
-"""Academic demo UI. All returns and companies are synthetic."""
-from pathlib import Path
-import sys
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import numpy as np
-import pandas as pd
-import streamlit as st
-from core.optimizer import optimize
-from core.returns import weekly_returns
-
-st.set_page_config(page_title='Portfolio Planner | Demo', page_icon='📊', layout='wide')
-st.title('Portfolio Investment Planner')
-st.caption('Explore stock selection and capital allocation with mathematical optimization.')
-st.warning('SYNTHETIC DATA DEMO — invented companies and returns. No live prices or actual index constituents. Country changes currency only.')
-
-MARKETS = {
-    'Philippines': ('PHP', 10000., 10000000., 100000., 1000.),
-    'United States': ('USD', 1000., 1000000., 10000., 100.),
-    'Japan': ('JPY', 500000., 100000000., 3000000., 10000.),
-}
-SECTORS = ['Banking', 'Technology', 'Utilities', 'Consumer goods', 'Property']
-OBJECTIVES = {'Balance return and risk':'balanced', 'Maximize estimated return':'return', 'Minimize risk (MAD)':'risk'}
-
-@st.cache_data
-def demo_data():
-    rng = np.random.default_rng(2026)
-    market = rng.normal(0, .006, (756, 1))
-    sectors = np.repeat(SECTORS, 4).tolist()
-    factors = rng.normal(0, .004, (756, len(SECTORS)))
-    r = np.column_stack([market[:,0] * (.5+i*.025) + factors[:,i//4] +
-                        rng.normal(.00015+i*.00003, .004+(i%4)*.002, 756)
-                        for i in range(20)])
     return r, [f'DEMO{i+1:02d}' for i in range(20)], sectors
 
 daily_returns, tickers, industries = demo_data()
@@ -94,3 +62,67 @@ if start:
         try:
             with st.spinner('Selecting stocks and optimizing allocations…'):
                 result = optimize(returns, tickers, industries, selected, count=int(count), capital=capital,
+                                  objective=OBJECTIVES[label], minimum=minimum/100, maximum=maximum/100,
+                                  cash_limit=.10, preference=preference/100, cash_reserve=cash/100,
+                                  stock_risk_limit=stock_limit_pct/100 if filter_on else None,
+                                  portfolio_mad_limit=portfolio_limit_pct/100 if ceiling_on else None)
+            st.session_state.result = result
+            st.session_state.signature = signature
+        except (ValueError, RuntimeError) as exc:
+            st.error(str(exc))
+
+result = st.session_state.get('result')
+if result:
+    st.success('Optimization completed — synthetic demonstration results')
+    for heading, value in [
+        ('Capital', f'{currency} {capital:,.2f}'),
+        ('Stock allocation', f'{currency} {capital-result["cash_amount"]:,.2f}'),
+        ('Cash reserved', f'{currency} {result["cash_amount"]:,.2f} ({cash:g}%)'),
+        ('Stocks selected', str(len(result['allocation']))),
+    ]:
+        st.markdown(f'**{heading}:** {value}')
+    st.caption(f'{result["candidate_count"]} eligible stocks after screening; {result["excluded_by_risk"]} excluded by the stock-risk filter.')
+    st.subheader('Target allocation')
+    rows = [{'Company':f'Synthetic company {x["ticker"][-2:]}', 'Ticker':x['ticker'],
+             'Industry':x['industry'], 'Weight (%)':100*x['weight'],
+             f'Amount ({currency})':x['amount']} for x in result['allocation']]
+    rows.append({'Company':'Cash retained','Ticker':'CASH','Industry':'Cash',
+                 'Weight (%)':100*result['cash_weight'],f'Amount ({currency})':result['cash_amount']})
+    df = pd.DataFrame(rows)
+    st.dataframe(df, hide_index=True, width="stretch",
+                 column_config={'Weight (%)':st.column_config.NumberColumn(format='%.2f'),
+                                f'Amount ({currency})':st.column_config.NumberColumn(format='%.2f')})
+    st.caption(f'Total allocation: {df["Weight (%)"].sum():.2f}% · Amounts are targets before fees and share/lot rounding.')
+    st.subheader('Allocation by stock and cash')
+    chart_data = df.assign(Label=df['Company'] + ' (' + df['Ticker'] + ')')
+    st.vega_lite_chart(chart_data, {
+        'mark': {'type': 'bar', 'cornerRadiusEnd': 3},
+        'height': max(220, len(df)*36),
+        'encoding': {
+            'x': {'field': 'Weight (%)', 'type': 'quantitative',
+                  'title': 'Portfolio weight (%)', 'scale': {'zero': True}},
+            'y': {'field': 'Label', 'type': 'nominal', 'sort': '-x',
+                  'title': None, 'axis': {'labelLimit': 300}},
+            'color': {'condition': {'test': "datum.Ticker === 'CASH'", 'value': '#d99518'},
+                      'value': '#1674b8'},
+            'tooltip': [{'field': 'Company', 'type': 'nominal'},
+                        {'field': 'Weight (%)', 'type': 'quantitative', 'format': '.2f'},
+                        {'field': f'Amount ({currency})', 'type': 'quantitative', 'format': ',.2f'}],
+        },
+    }, use_container_width=True)
+    a,b=st.columns(2)
+    a.metric('Mean weekly return — synthetic sample', f'{result["period_return"]:.4%}')
+    b.metric('Weekly portfolio MAD — synthetic sample', f'{result["period_mad"]:.4%}')
+    export=df.assign(Data_source='SYNTHETIC DEMO', Objective=label, Currency=currency, Return_frequency='weekly', Weekly_observations=len(weekly),
+                     Stock_weekly_SD_limit_pct=stock_limit_pct if filter_on else 'Disabled',
+                     Portfolio_weekly_MAD_limit_pct=portfolio_limit_pct if ceiling_on else 'Disabled')
+    st.download_button('Download allocation CSV', export.to_csv(index=False).encode('utf-8-sig'),
+                       file_name=f'synthetic_allocation_{currency}.csv', mime='text/csv')
+    with st.expander('Calculation details'):
+        st.write(f'{result["candidate_count"]} eligible invented stocks; {len(daily_returns)} synthetic daily returns converted to {len(weekly)} weekly return observations; fixed random seed 2026.')
+        st.write('Selection: binary MILP. Allocation: LP with mean absolute deviation. Each stage is optimal for its own problem; joint global optimality is not claimed.')
+        st.write('Weekly return = this week-end adjusted price / previous week-end adjusted price - 1. Incomplete final weeks are excluded. Weekly returns are compounded, not averaged daily returns.')
+        st.write('The demo uses invented prices and an artificial weekday calendar beginning January 2023. These dates are not real market history. Live three-year data is not connected yet.')
+else:
+    st.info('Choose your settings, then click Start Computation.')
+    st.write('This demonstration tests the mathematical workflow before market data is connected. Each industry contains four invented stocks.')
