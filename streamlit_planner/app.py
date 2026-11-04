@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 from core.optimizer import optimize
+from core.returns import weekly_returns
 
 st.set_page_config(page_title='Portfolio Planner | Demo', page_icon='📊', layout='wide')
 st.title('Portfolio Investment Planner')
@@ -31,7 +32,17 @@ def demo_data():
                         for i in range(20)])
     return r, [f'DEMO{i+1:02d}' for i in range(20)], sectors
 
-returns, tickers, industries = demo_data()
+daily_returns, tickers, industries = demo_data()
+# Artificial calendar is solely a demonstration of daily-to-weekly conversion.
+# Includes a baseline price before the first generated daily return.
+demo_dates = pd.bdate_range('2023-01-06', periods=len(daily_returns)+1)
+daily_prices = pd.DataFrame(
+    np.vstack([np.ones((1, len(tickers))), np.cumprod(1+daily_returns, axis=0)])*100,
+    index=demo_dates, columns=tickers,
+)
+weekly = weekly_returns(daily_prices)
+returns = weekly.to_numpy()
+st.caption('Optimization frequency: weekly. Returns are calculated from daily prices at completed week ends.')
 with st.sidebar:
     st.header('Portfolio settings')
     country = st.selectbox('Country / display currency', list(MARKETS), key='country')
@@ -52,7 +63,7 @@ with st.sidebar:
         st.caption('The chosen reserve is held exactly. Default: 10%; choose 0% only to disable it. Stock weights use total capital.')
     start = st.button('Start Computation', type='primary', key='compute')
 
-signature = ('fixed-reserve-v2', country, capital, count, label, tuple(selected), minimum, maximum, cash, preference)
+signature = ('weekly-reserve-v3', country, capital, count, label, tuple(selected), minimum, maximum, cash, preference)
 if st.session_state.get('signature') != signature:
     st.session_state.pop('result', None)
 
@@ -82,55 +93,3 @@ if start:
             st.session_state.signature = signature
         except (ValueError, RuntimeError) as exc:
             st.error(str(exc))
-
-result = st.session_state.get('result')
-if result:
-    st.success('Optimization completed — synthetic demonstration results')
-    for heading, value in [
-        ('Capital', f'{currency} {capital:,.2f}'),
-        ('Stock allocation', f'{currency} {capital-result["cash_amount"]:,.2f}'),
-        ('Cash reserved', f'{currency} {result["cash_amount"]:,.2f} ({cash:g}%)'),
-        ('Stocks selected', str(len(result['allocation']))),
-    ]:
-        st.markdown(f'**{heading}:** {value}')
-    st.subheader('Target allocation')
-    rows = [{'Company':f'Synthetic company {x["ticker"][-2:]}', 'Ticker':x['ticker'],
-             'Industry':x['industry'], 'Weight (%)':100*x['weight'],
-             f'Amount ({currency})':x['amount']} for x in result['allocation']]
-    rows.append({'Company':'Cash retained','Ticker':'CASH','Industry':'Cash',
-                 'Weight (%)':100*result['cash_weight'],f'Amount ({currency})':result['cash_amount']})
-    df = pd.DataFrame(rows)
-    st.dataframe(df, hide_index=True, width="stretch",
-                 column_config={'Weight (%)':st.column_config.NumberColumn(format='%.2f'),
-                                f'Amount ({currency})':st.column_config.NumberColumn(format='%.2f')})
-    st.caption(f'Total allocation: {df["Weight (%)"].sum():.2f}% · Amounts are targets before fees and share/lot rounding.')
-    st.subheader('Allocation by stock and cash')
-    chart_data = df.assign(Label=df['Company'] + ' (' + df['Ticker'] + ')')
-    st.vega_lite_chart(chart_data, {
-        'mark': {'type': 'bar', 'cornerRadiusEnd': 3},
-        'height': max(220, len(df)*36),
-        'encoding': {
-            'x': {'field': 'Weight (%)', 'type': 'quantitative',
-                  'title': 'Portfolio weight (%)', 'scale': {'zero': True}},
-            'y': {'field': 'Label', 'type': 'nominal', 'sort': '-x',
-                  'title': None, 'axis': {'labelLimit': 300}},
-            'color': {'condition': {'test': "datum.Ticker === 'CASH'", 'value': '#d99518'},
-                      'value': '#1674b8'},
-            'tooltip': [{'field': 'Company', 'type': 'nominal'},
-                        {'field': 'Weight (%)', 'type': 'quantitative', 'format': '.2f'},
-                        {'field': f'Amount ({currency})', 'type': 'quantitative', 'format': ',.2f'}],
-        },
-    }, use_container_width=True)
-    a,b=st.columns(2)
-    a.metric('Mean daily return — synthetic sample', f'{result["daily_return"]:.4%}')
-    b.metric('Daily portfolio MAD — synthetic sample', f'{result["daily_mad"]:.4%}')
-    export=df.assign(Data_source='SYNTHETIC DEMO', Objective=label, Currency=currency)
-    st.download_button('Download allocation CSV', export.to_csv(index=False).encode('utf-8-sig'),
-                       file_name=f'synthetic_allocation_{currency}.csv', mime='text/csv')
-    with st.expander('Calculation details'):
-        st.write(f'{result["candidate_count"]} eligible invented stocks; 756 synthetic daily observations; fixed random seed 2026.')
-        st.write('Selection: binary MILP. Allocation: LP with mean absolute deviation. Each stage is optimal for its own problem; joint global optimality is not claimed.')
-        st.write('No historical date range applies to these generated observations. No market data was retrieved.')
-else:
-    st.info('Choose your settings, then click Start Computation.')
-    st.write('This demonstration tests the mathematical workflow before market data is connected. Each industry contains four invented stocks.')
