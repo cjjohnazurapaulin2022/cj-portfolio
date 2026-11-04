@@ -35,6 +35,20 @@ class EngineTests(unittest.TestCase):
         out=optimize(r,['A','B','C'],['A','B','C'],['A','B','C'],count=3,objective='risk')
         self.assertAlmostEqual(out['cash_weight'],.1,places=6)
         self.assertAlmostEqual(out['daily_mad'],.009,places=7)
+    def test_fixed_reserve_all_objectives(self):
+        for reserve in [0., .05, .10]:
+            for objective in ['return', 'risk', 'balanced']:
+                out=self.run_model(objective=objective, cash_reserve=reserve, capital=1000000)
+                self.assertAlmostEqual(out['cash_amount'],1000000*reserve,places=6)
+                self.assertAlmostEqual(sum(x['weight'] for x in out['allocation']),1-reserve)
+                self.assertAlmostEqual(sum(x['amount'] for x in out['allocation'])+out['cash_amount'],1000000)
+    def test_fixed_reserve_feasibility(self):
+        for kw in [{'cash_reserve':.1,'minimum':.19},
+                   {'cash_reserve':0.,'maximum':.19},
+                   {'cash_reserve':.11}, {'cash_reserve':-.1}, {'cash_reserve':float('nan')}]:
+            with self.assertRaises(ValueError): self.run_model(**kw)
+        out=self.run_model(cash_reserve=.1,minimum=.18,maximum=.18)
+        self.assertTrue(all(abs(x['weight']-.18)<1e-7 for x in out['allocation']))
     def test_invalid(self):
         for kw in [{'maximum':.15},{'count':10},{'minimum':.25},{'capital':0}]:
             with self.assertRaises(ValueError):self.run_model(**kw)
