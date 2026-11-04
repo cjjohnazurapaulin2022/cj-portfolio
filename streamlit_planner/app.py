@@ -61,9 +61,16 @@ with st.sidebar:
         preference = st.slider('Return emphasis for balanced objective (%)', 0, 100, 50, key='preference')
         st.caption('0 = risk emphasis; 100 = return emphasis. Cash earns 0% in this model.')
         st.caption('The chosen reserve is held exactly. Default: 10%; choose 0% only to disable it. Stock weights use total capital.')
+        filter_on = st.checkbox('Limit individual stock risk', key='filter_on')
+        stock_limit_pct = st.number_input('Maximum stock weekly standard deviation (%)',
+                                         0., 100., 5., .1, disabled=not filter_on, key='stock_limit')
+        ceiling_on = st.checkbox('Limit portfolio risk', key='ceiling_on')
+        portfolio_limit_pct = st.number_input('Maximum portfolio weekly MAD (%)',
+                                             0., 100., 2., .1, disabled=not ceiling_on, key='portfolio_limit')
+        st.caption('Optional historical risk limits. Example values are demo settings, not recommended risk levels. These limits do not cap future losses.')
     start = st.button('Start Computation', type='primary', key='compute')
 
-signature = ('weekly-reserve-v3', country, capital, count, label, tuple(selected), minimum, maximum, cash, preference)
+signature = ('weekly-risk-v4', filter_on, stock_limit_pct, ceiling_on, portfolio_limit_pct, country, capital, count, label, tuple(selected), minimum, maximum, cash, preference)
 if st.session_state.get('signature') != signature:
     st.session_state.pop('result', None)
 
@@ -87,9 +94,3 @@ if start:
         try:
             with st.spinner('Selecting stocks and optimizing allocations…'):
                 result = optimize(returns, tickers, industries, selected, count=int(count), capital=capital,
-                                  objective=OBJECTIVES[label], minimum=minimum/100, maximum=maximum/100,
-                                  cash_limit=.10, preference=preference/100, cash_reserve=cash/100)
-            st.session_state.result = result
-            st.session_state.signature = signature
-        except (ValueError, RuntimeError) as exc:
-            st.error(str(exc))
