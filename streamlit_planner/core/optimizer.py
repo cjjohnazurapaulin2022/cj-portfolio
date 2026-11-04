@@ -1,12 +1,55 @@
+"""Two-stage academic optimizer. Input: aligned periodic returns, NOT prices.
+Risk is mean absolute deviation (MAD); cash return is zero.
+No market retrieval, fees, or share rounding is performed here.
+"""
+import numpy as np
+from scipy.optimize import Bounds, LinearConstraint, milp, linprog
+
+
+def optimize(returns, tickers, industries, selected_industries, count=5,
+             capital=100000., objective='balanced', minimum=.01,
+             maximum=.35, cash_limit=.10, preference=.5, cash_reserve=None,
+             stock_risk_limit=None, portfolio_mad_limit=None):
+    r = np.asarray(returns, dtype=float)
+    tickers, industries = list(tickers), list(industries)
+    sectors = list(selected_industries)
+    if r.ndim != 2 or r.shape[0] < 2 or r.shape[1] != len(tickers):
+        raise ValueError('Provide at least two aligned return observations per ticker.')
+    if len(industries) != len(tickers) or len(set(tickers)) != len(tickers):
+        raise ValueError('Tickers must be unique and have one industry each.')
+    if not np.isfinite(r).all() or (r < -1).any():
+        raise ValueError('Returns must be finite decimal simple returns, no missing values.')
+    if objective not in {'return', 'risk', 'balanced'}:
+        raise ValueError('Objective must be return, risk, or balanced.')
+    if not isinstance(count, int) or isinstance(count, bool) or count < 3:
+        raise ValueError('Stock count must be an integer of at least three.')
+    if len(set(sectors)) != len(sectors) or not 3 <= len(sectors) <= count:
+        raise ValueError('Choose between three and count distinct industries.')
+    if not all(np.isfinite(x) for x in [capital,minimum,maximum,cash_limit,preference]):
+        raise ValueError('Settings must be finite.')
+    if capital <= 0 or not 0 < minimum <= maximum <= 1 or not 0 <= cash_limit <= 1 or not 0 <= preference <= 1:
+        raise ValueError('Invalid capital, weight bounds, cash limit, or preference.')
+    if count*minimum > 1+1e-10 or count*maximum+cash_limit < 1-1e-10:
+        raise ValueError('Infeasible stock weights and cash limit.')
     # None preserves the original optional-cash API; the UI supplies a fixed reserve.
     if cash_reserve is not None:
         if not np.isfinite(cash_reserve) or not 0 <= cash_reserve <= cash_limit:
             raise ValueError('Cash reserve must be between zero and the cash limit.')
         if count*minimum > 1-cash_reserve+1e-10 or count*maximum < 1-cash_reserve-1e-10:
             raise ValueError('Stock weight bounds cannot allocate the capital remaining after the cash reserve.')
+    for limit in [stock_risk_limit, portfolio_mad_limit]:
+        if limit is not None and (not np.isfinite(limit) or limit < 0):
+            raise ValueError('Risk limits must be finite and nonnegative.')
     eligible = [i for i,s in enumerate(industries) if s in sectors]
+    before_screen = len(eligible)
+    stock_sd = r.std(axis=0, ddof=1)
+    if stock_risk_limit is not None:
+        eligible = [i for i in eligible if stock_sd[i] <= stock_risk_limit]
+    missing = [s for s in sectors if not any(industries[i] == s for i in eligible)]
+    if missing:
+        raise ValueError('No eligible stocks remain in: ' + ', '.join(missing) + '. Adjust the stock-risk filter or industries.')
     if len(eligible) < count or any(s not in industries for s in sectors):
-        raise ValueError('Insufficient eligible stocks or missing industry.')
+        raise ValueError(f'Only {len(eligible)} stocks remain eligible for {count} positions. Adjust the stock-risk filter or stock count.')
     # Sort tickers for repeatable input ordering. Exact selection ties are solver ties.
     eligible.sort(key=lambda i: tickers[i])
     a = r[:,eligible]; mu=a.mean(axis=0); mad=np.abs(a-mu).mean(axis=0)
@@ -30,10 +73,16 @@
     bounds=[(minimum,maximum)]*K+[cash_bounds]+[(0,None)]*T
     ret=np.zeros(size);ret[:K]=mu
     risk=np.zeros(size);risk[K+1:]=1/T
+    base_rhs = np.zeros(2*T)
+    if portfolio_mad_limit is not None:
+        A = np.vstack([A, risk])
+        base_rhs = np.r_[base_rhs, portfolio_mad_limit]
     def solve(cost,extra=None):
         mat=A if extra is None else np.vstack([A,extra[0]])
-        rhs=np.zeros(2*T) if extra is None else np.r_[np.zeros(2*T),extra[1]]
+        rhs=base_rhs if extra is None else np.r_[base_rhs,extra[1]]
         sol=linprog(cost,A_ub=mat,b_ub=rhs,A_eq=eq,b_eq=[1],bounds=bounds,method='highs')
+        if sol.status == 2 and portfolio_mad_limit is not None:
+            raise ValueError('The selected stocks cannot meet the portfolio MAD ceiling with these weight and cash settings. Increase the ceiling or change selection settings. Other stock combinations may still be feasible; this two-stage model does not search them automatically.')
         if not sol.success:raise ValueError('Allocation failed: '+sol.message)
         return sol.x
     tol=1e-10
@@ -53,8 +102,11 @@
         raise RuntimeError('Post-solve constraint verification failed.')
     if cash_reserve is not None and abs(x[K]-cash_reserve)>1e-7:
         raise RuntimeError('Cash reserve verification failed.')
+    if portfolio_mad_limit is not None and actual_mad > portfolio_mad_limit+1e-7:
+        raise RuntimeError('Portfolio risk ceiling verification failed.')
     return {'status':'optimal','objective':objective,'period_return':expected,'period_mad':actual_mad,
             'daily_return':expected,'daily_mad':actual_mad, # Legacy aliases; units follow input frequency.
             'cash_weight':float(x[K]),'cash_amount':float(capital*x[K]),'candidate_count':len(eligible),
+            'excluded_by_risk':before_screen-len(eligible),
             'allocation':[{'ticker':tickers[i],'industry':industries[i],'weight':float(x[j]),
                            'amount':float(capital*x[j])} for j,i in enumerate(chosen)]}
