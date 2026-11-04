@@ -8,7 +8,7 @@ from scipy.optimize import Bounds, LinearConstraint, milp, linprog
 
 def optimize(returns, tickers, industries, selected_industries, count=5,
              capital=100000., objective='balanced', minimum=.01,
-             maximum=.35, cash_limit=.10, preference=.5):
+             maximum=.35, cash_limit=.10, preference=.5, cash_reserve=None):
     r = np.asarray(returns, dtype=float)
     tickers, industries = list(tickers), list(industries)
     sectors = list(selected_industries)
@@ -30,6 +30,12 @@ def optimize(returns, tickers, industries, selected_industries, count=5,
         raise ValueError('Invalid capital, weight bounds, cash limit, or preference.')
     if count*minimum > 1+1e-10 or count*maximum+cash_limit < 1-1e-10:
         raise ValueError('Infeasible stock weights and cash limit.')
+    # None preserves the original optional-cash API; the UI supplies a fixed reserve.
+    if cash_reserve is not None:
+        if not np.isfinite(cash_reserve) or not 0 <= cash_reserve <= cash_limit:
+            raise ValueError('Cash reserve must be between zero and the cash limit.')
+        if count*minimum > 1-cash_reserve+1e-10 or count*maximum < 1-cash_reserve-1e-10:
+            raise ValueError('Stock weight bounds cannot allocate the capital remaining after the cash reserve.')
     eligible = [i for i,s in enumerate(industries) if s in sectors]
     if len(eligible) < count or any(s not in industries for s in sectors):
         raise ValueError('Insufficient eligible stocks or missing industry.')
@@ -52,7 +58,8 @@ def optimize(returns, tickers, industries, selected_industries, count=5,
     A=np.zeros((2*T,size)); A[:T,:K]=dev; A[T:,:K]=-dev
     A[:T,K+1:]=-np.eye(T); A[T:,K+1:]=-np.eye(T)
     eq=np.zeros((1,size));eq[0,:K+1]=1
-    bounds=[(minimum,maximum)]*K+[(0,cash_limit)]+[(0,None)]*T
+    cash_bounds = (0,cash_limit) if cash_reserve is None else (cash_reserve,cash_reserve)
+    bounds=[(minimum,maximum)]*K+[cash_bounds]+[(0,None)]*T
     ret=np.zeros(size);ret[:K]=mu
     risk=np.zeros(size);risk[K+1:]=1/T
     def solve(cost,extra=None):
@@ -76,6 +83,8 @@ def optimize(returns, tickers, industries, selected_industries, count=5,
     expected,actual_mad=metrics(x)
     if abs(x[:K+1].sum()-1)>1e-7 or (x[:K]<minimum-1e-7).any() or (x[:K]>maximum+1e-7).any() or not -1e-7<=x[K]<=cash_limit+1e-7:
         raise RuntimeError('Post-solve constraint verification failed.')
+    if cash_reserve is not None and abs(x[K]-cash_reserve)>1e-7:
+        raise RuntimeError('Cash reserve verification failed.')
     return {'status':'optimal','objective':objective,'daily_return':expected,'daily_mad':actual_mad,
             'cash_weight':float(x[K]),'cash_amount':float(capital*x[K]),'candidate_count':len(eligible),
             'allocation':[{'ticker':tickers[i],'industry':industries[i],'weight':float(x[j]),
