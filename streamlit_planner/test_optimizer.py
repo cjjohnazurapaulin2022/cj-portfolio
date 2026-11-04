@@ -49,6 +49,33 @@ class EngineTests(unittest.TestCase):
             with self.assertRaises(ValueError): self.run_model(**kw)
         out=self.run_model(cash_reserve=.1,minimum=.18,maximum=.18)
         self.assertTrue(all(abs(x['weight']-.18)<1e-7 for x in out['allocation']))
+    def test_stock_risk_filter(self):
+        sd=self.r.std(axis=0,ddof=1)
+        limit=float(np.sort(sd)[-2])
+        out=self.run_model(stock_risk_limit=limit)
+        self.assertEqual(out['excluded_by_risk'],1)
+        for x in out['allocation']:
+            self.assertLessEqual(sd[self.names.index(x['ticker'])],limit)
+        with self.assertRaisesRegex(ValueError,'No eligible stocks'):
+            self.run_model(stock_risk_limit=0.)
+    def test_binding_portfolio_ceiling(self):
+        # Three fixed stocks: high return also has high volatility.
+        r=np.array([[-.02,0,0],[.04,0,0]]*20)
+        for obj in ['return','risk','balanced']:
+            out=optimize(r,['A','B','C'],['A','B','C'],['A','B','C'],
+                         count=3,maximum=.8,cash_reserve=.1,
+                         objective=obj,portfolio_mad_limit=.003)
+            w=np.array([x['weight'] for x in out['allocation']])
+            actual=np.abs(r@w-(r@w).mean()).mean()
+            self.assertLessEqual(actual,.003+1e-7)
+            self.assertAlmostEqual(actual,out['period_mad'])
+            if obj=='return': self.assertAlmostEqual(w[0],.1,places=5)
+        with self.assertRaisesRegex(ValueError,'selected stocks cannot meet'):
+            optimize(r,['A','B','C'],['A','B','C'],['A','B','C'],
+                     count=3,maximum=.8,cash_reserve=.1,portfolio_mad_limit=0.)
+    def test_invalid_risk_limits(self):
+        for kw in [{'stock_risk_limit':-1},{'portfolio_mad_limit':float('nan')}]:
+            with self.assertRaises(ValueError):self.run_model(**kw)
     def test_invalid(self):
         for kw in [{'maximum':.15},{'count':10},{'minimum':.25},{'capital':0}]:
             with self.assertRaises(ValueError):self.run_model(**kw)
