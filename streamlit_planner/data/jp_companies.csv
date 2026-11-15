@@ -1,0 +1,31 @@
+ticker,company,industry,sector
+2269,"Meiji Holdings Co., Ltd.",Foods,Consumer Goods
+2503,"Kirin Holdings Co., Ltd.",Foods,Consumer Goods
+2802,"Ajinomoto Co., Inc.",Foods,Consumer Goods
+4063,"Shin-Etsu Chemical Co., Ltd.",Chemicals,Materials
+4502,"Takeda Pharmaceutical Co., Ltd.",Pharmaceuticals,Consumer Goods
+4503,Astellas Pharma Inc.,Pharmaceuticals,Consumer Goods
+4568,"Daiichi Sankyo Co., Ltd.",Pharmaceuticals,Consumer Goods
+5401,Nippon Steel Corp.,Steel,Materials
+6301,Komatsu Ltd.,Machinery,Capital Goods/Others
+6501,"Hitachi, Ltd.",Electric Machinery,Technology
+6758,Sony Group Corp.,Electric Machinery,Technology
+7011,"Mitsubishi Heavy Industries, Ltd.",Machinery,Capital Goods/Others
+7203,Toyota Motor Corp.,Automobiles and Auto Parts,Technology
+7267,"Honda Motor Co., Ltd.",Automobiles and Auto Parts,Technology
+7269,Suzuki Motor Corp.,Automobiles and Auto Parts,Technology
+7974,"Nintendo Co., Ltd.",Information and Communications,Information and Communications
+8035,Tokyo Electron Ltd.,Electric Machinery,Technology
+8058,Mitsubishi Corp.,Trading Companies,Materials
+8306,"Mitsubishi UFJ Financial Group, Inc.",Banking,Financials
+8316,"Sumitomo Mitsui Financial Group, Inc.",Banking,Financials
+8411,"Mizuho Financial Group, Inc.",Banking,Financials
+8801,"Mitsui Fudosan Co., Ltd.",Real Estate,Capital Goods/Others
+9020,East Japan Railway Co.,Railway and Bus,Transportation and Utilities
+9101,Nippon Yusen K.K.,Marine Transport,Transportation and Utilities
+9202,ANA Holdings Inc.,Air Transport,Transportation and Utilities
+9432,"NTT, Inc.",Information and Communications,Information and Communications
+9433,KDDI Corp.,Information and Communications,Information and Communications
+9502,"Chubu Electric Power Co., Inc.",Electric Power,Transportation and Utilities
+9503,"Kansai Electric Power Co., Inc.",Electric Power,Transportation and Utilities
+9531,"Tokyo Gas Co., Ltd.",Gas,Transportation and Utilities
