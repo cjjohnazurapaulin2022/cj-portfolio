@@ -1,3 +1,4 @@
+
 """Academic portfolio demo with built-in historical or synthetic daily prices."""
 from pathlib import Path
 import sys
@@ -94,3 +95,7 @@ def demo_data():
     sectors = np.repeat(SECTORS, 4).tolist()
     factors = rng.normal(0, .004, (756, len(SECTORS)))
     r = np.column_stack([market[:,0] * (.5+i*.025) + factors[:,i//4] +
+
+
+
+
